@@ -1,0 +1,38 @@
+Options +FollowSymLinks
+
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{REQUEST_URI} ^/(stats|failed_auth\.html)/?(.*)$ [NC]
+RewriteRule ^.*$ - [L]
+
+# Remove super-old /weblog/ subdirectory 
+RewriteRule ^weblog/(.*)$ /$1 [R=301,NC]
+
+# Replace old underscores with dashes
+RewriteCond %{REQUEST_URI} !\.(jpe?g|png|bmp|gif|js|css|ttf|woff|svg)$ [NC]
+RewriteRule ^([^_]*)_([^_]*)_(.*)$ /$1-$2-$3 [R=301,L]
+RewriteCond %{REQUEST_URI} !\.(jpe?g|png|bmp|gif|js|css|ttf|woff|svg)$ [NC]
+RewriteRule ^([^_]*)_(.*)$ /$1-$2 [R=301,L]
+
+# Redirect that one recurrent bad link to the home page
+Redirect 301 /blog/po /
+Redirect 301 http://www.plannedobsolescence.net/po /
+
+#Redirect projects
+Redirect 301 /cpdraft http://projects.plannedobsolescence.net/cpdraft/
+Redirect 301 /cpfinal http://projects.plannedobsolescence.net/cpfinal/
+Redirect 301 /infinitesummer http://projects.plannedobsolescence.net/infinitesummer/
+
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress

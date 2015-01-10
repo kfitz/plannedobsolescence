@@ -1,0 +1,65 @@
+Options +FollowSymLinks
+
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{REQUEST_URI} ^/(stats|failed_auth\.html)/?(.*)$ [NC]
+RewriteRule ^.*$ - [L]
+
+# Replace super-old /weblog/ subdirectory with /blog/
+RewriteRule ^weblog/(.*)$ /blog/$1 [R=301,NC]
+
+# Replace old underscores with dashes
+RewriteCond %{REQUEST_URI} !\.(jpe?g|png|bmp|gif|js)$ [NC]
+RewriteRule ^([^_]*)_([^_]*)_(.*)$ /$1-$2-$3 [R=301,L]
+RewriteCond %{REQUEST_URI} !\.(jpe?g|png|bmp|gif|js)$ [NC]
+RewriteRule ^([^_]*)_(.*)$ /$1-$2 [R=301,L]
+
+# Redirect that one recurrent bad link to the home page
+Redirect 301 /blog/po /
+Redirect 301 http://www.plannedobsolescence.net/po /
+
+# Block the include-only files.
+RewriteRule ^wp-admin/includes/ - [F,L]
+RewriteRule !^wp-includes/ - [S=3]
+RewriteRule ^wp-includes/[^/]+\.php$ - [F,L]
+RewriteRule ^wp-includes/js/tinymce/langs/.+\.php - [F,L]
+RewriteRule ^wp-includes/theme-compat/ - [F,L]
+
+# Redirecting old root-level URLs to /blog/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/feed
+RewriteCond %{REQUEST_URI} !^/rss
+RewriteCond %{REQUEST_URI} !^/cpfinal/
+RewriteCond %{REQUEST_URI} !^/cpdraft/
+RewriteCond %{REQUEST_URI} !^/infinitesummer/
+RewriteCond %{REQUEST_URI} !^/kathleen-fitzpatrick
+RewriteCond %{REQUEST_URI} !^/about
+RewriteCond %{REQUEST_URI} !^/archives
+RewriteCond %{REQUEST_URI} !^/wp-content/
+RewriteCond %{REQUEST_URI} !^/page/
+RewriteCond %{REQUEST_URI} !^/blog/
+RewriteRule ^(.*)$ blog/$1 [L,R=301]
+
+
+ 
+# BEGIN WordPress
+RewriteRule ^index\.php$ - [L]
+
+# uploaded files
+RewriteRule ^([_0-9a-zA-Z-]+/)?files/(.+) wp-includes/ms-files.php?file=$2 [L]
+
+# add a trailing slash to /wp-admin
+RewriteRule ^([_0-9a-zA-Z-]+/)?wp-admin$ $1wp-admin/ [R=301,L]
+
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?(wp-(content|admin|includes).*) $2 [L]
+RewriteRule ^([_0-9a-zA-Z-]+/)?(.*\.php)$ $2 [L]
+RewriteRule . index.php [L]
+# END WordPress
+
+
+ErrorDocument 404 /index.php?error=404
