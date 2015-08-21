@@ -10,10 +10,6 @@ msgstr ""
 "X-Generator: GlotPress/0.1\n"
 "Project-Id-Version: Chunk\n"
 
-#. Author URI of the plugin/theme
-msgid "https://wordpress.com/themes/"
-msgstr ""
-
 #. Description of the plugin/theme
 msgid "A straightforward theme with bold typography designed by <a href=\"http://twitter.com/thisistran/\">Tran N</a>. Featuring multiple post formats, custom background, custom menu, and custom header. Also comes with an optional footer widget area."
 msgstr ""
@@ -30,7 +26,7 @@ msgstr "<span class=\"meta-nav\">&larr;</span> Öncəki yazı"
 msgid "Next post <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Sonrakı yazı <span class=\"meta-nav\">&rarr;</span>"
 
-#: functions.php:227
+#: functions.php:221
 msgid "Download: %1$s"
 msgstr "Endir: %1$s"
 
@@ -38,11 +34,11 @@ msgstr "Endir: %1$s"
 msgid "<a href=\"%1$s\" title=\"Link to full-size image\">%2$s &times; %3$s</a> in <a href=\"%4$s\" title=\"Return to %5$s\" rel=\"gallery\">%5$s</a>"
 msgstr ""
 
-#: functions.php:181
+#: functions.php:175
 msgid "Page %s"
 msgstr "Səhifə %s"
 
-#: functions.php:67
+#: functions.php:61
 msgid "Footer"
 msgstr "Zirzəmi"
 
@@ -82,9 +78,7 @@ msgstr "Səhifələr:"
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Oxumağa davam et <span class=\"meta-nav\">&rarr;</span>"
 
-#: content-audio.php:17 content-link.php:15 content.php:30
-#: eventbrite/eventbrite-index.php:33 eventbrite/eventbrite-single.php:20
-#: image.php:30
+#: content-audio.php:17 content-link.php:15 content.php:30 image.php:30
 msgid "Edit"
 msgstr "Redaktə et"
 

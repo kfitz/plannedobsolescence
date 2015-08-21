@@ -25,11 +25,10 @@
 <!-- pingbacks -->
 <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 
-<!--[if IE 6]>
+<!--[if IE]>
 <script type='text/javascript'>
 /* <![CDATA[ */
-// set this before wp_head()
-var cp_msie6 = 1;
+var cp_msie = 1;
 /* ]]> */
 </script>
 <![endif]-->
@@ -51,9 +50,6 @@ var cp_msie6 = 1;
 <?php }} ?>
 
 <!-- IE stylesheets so we can override anything -->
-<!--[if IE 6]>
-<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/assets/css/ie6.css" media="screen" />
-<![endif]-->
 <!--[if gte IE 7]>
 <link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/assets/css/ie7.css" media="screen" />
 <![endif]-->
@@ -81,13 +77,14 @@ $_body_classes = commentpress_get_body_classes( true );
 
 <?php
 
-// until WordPress supports a locate_theme_file() function, use filter
-$include = apply_filters(
+// first try to locate using WP method
+$cp_header_body = apply_filters(
 	'cp_template_header_body',
-	get_template_directory() . '/assets/templates/header_body.php'
+	locate_template( 'assets/templates/header_body.php' )
 );
 
-include( $include );
+// load it if we find it
+if ( $cp_header_body != '' ) load_template( $cp_header_body );
 
 ?>
 

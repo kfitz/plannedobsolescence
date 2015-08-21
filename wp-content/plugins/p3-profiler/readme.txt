@@ -1,9 +1,9 @@
 === P3 (Plugin Performance Profiler) ===
-Contributors: Godaddy, StarfieldTech, kurtpayne, cklosows
+Contributors: Godaddy, StarfieldTech, kurtpayne, asink
 Tags: debug, debugging, developer, development, performance, plugin, profiler, speed
 Requires at least: 3.3
 Tested up to: 4.1
-Stable tag: 1.5.3.4
+Stable tag: 1.5.3.9
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,11 +46,27 @@ Manual installation:
 4. Then activate the Plugin from Plugins page.
 
 == Upgrade Notice ==
+
+= 1.5.3.9 =
+Security update: Escape URLs returned by add_query_arg and remove_query_arg
+
+= 1.5.3.8 =
+Bugfix for HTML element with space in the id
+
+= 1.5.3.7 =
+Ensure HTML element names are distinct. Props mogulbuster
+
+= 1.5.3.6 =
+Internal version bump to ensure new CSS/JS isn't cached
+
+= 1.5.3.5 =
+CSS fix for jQuery UI Dialogs
+
 = 1.5.3.4 =
-Fixes another CSS issue with overlays and soem browsers
+Fixes another CSS issue with overlays and some browsers
 
 = 1.5.3.3 =
-Fixes a CSS issue with overlays and soem browsers
+Fixes a CSS issue with overlays and some browsers
 
 = 1.5.3.2 =
 Style updates for 4.1
@@ -114,12 +130,6 @@ Warning messages like this: `Warning: usort() [function.usort]: Array was modifi
 
 Previous version of the plugin (before 1.1.0) did not have theme name detection support.  If you performed a scan with a previous version, then upgraded to 1.1.0+ to view the scan, the theme name will show as "unknown."
 
-= How do I get support for P3? =
-
-We love to make P3 better.  When reporting a bug, please visit this page so we can get more information:  [http://x.co/p3support](http://x.co/p3support)
-
-Thanks!
-
 = Help!  I used P3 and now my site is down! =
 
 First, get your site back up!  There are two ways to do this.  Try the emergency shutoff switch first.  If that doesn't work, delete the plugin files.
@@ -159,8 +169,21 @@ add_filter( 'p3_automatic_scan_urls', 'my_p3_auto_scan_pages' );
 </code>
 
 == Changelog ==
-= 1.5.3.4 =
-* Fixes another CSS issue with overlays and soem browsers
+
+= 1.5.3.9 =
+Security update: Escape URLs returned by add_query_arg and remove_query_arg
+
+= 1.5.3.8 =
+Bugfix for HTML element with space in the id
+
+= 1.5.3.7 =
+Ensure HTML element names are distinct. Props mogulbuster
+
+= 1.5.3.6 =
+Internal version bump to ensure new CSS/JS isn't cached
+
+= 1.5.3.5 =
+* CSS fix for jQuery UI Dialogs.  props cklosows
 
 = 1.5.3.3 =
 * Fixes a CSS issue with overlays and soem browsers

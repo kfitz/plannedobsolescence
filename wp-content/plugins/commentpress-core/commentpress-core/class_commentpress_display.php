@@ -104,7 +104,7 @@ class CommentpressCoreDisplay {
 			if ( $theme->exists() ) {
 
 				// ignore if not allowed
-				//if ( is_multisite() AND !$theme->is_allowed() ) { return; }
+				//if ( is_multisite() AND ! $theme->is_allowed() ) { return; }
 
 				// activate it
 				switch_theme(
@@ -171,7 +171,7 @@ class CommentpressCoreDisplay {
 			if ( $theme->exists() ) {
 
 				// ignore if not allowed
-				//if ( is_multisite() AND !$theme->is_allowed() ) { return; }
+				//if ( is_multisite() AND ! $theme->is_allowed() ) { return; }
 
 				// activate it
 				switch_theme(
@@ -231,52 +231,131 @@ class CommentpressCoreDisplay {
 	public function get_jquery() {
 
 		// default to minified scripts
-		$debug_state = '';
+		$debug_state = '.min';
 
 		// target different scripts when debugging
 		if ( defined( 'SCRIPT_DEBUG' ) AND SCRIPT_DEBUG === true ) {
 
 			// use uncompressed scripts
-			$debug_state = '.dev';
+			$debug_state = '';
 
 		}
 
 		// add our javascript plugin and dependencies
 		wp_enqueue_script(
-
 			'jquery_commentpress',
-			plugins_url( 'commentpress-core/assets/js/jquery.commentpress'.$debug_state.'.js', COMMENTPRESS_PLUGIN_FILE ),
-			array( 'jquery', 'jquery-form', 'jquery-ui-core', 'jquery-ui-resizable' ),
+			plugins_url( 'commentpress-core/assets/js/jquery.commentpress' . $debug_state . '.js', COMMENTPRESS_PLUGIN_FILE ),
+			array( 'jquery', 'jquery-form', 'jquery-ui-core', 'jquery-ui-resizable', 'jquery-ui-tooltip' ),
 			COMMENTPRESS_VERSION // version
-
 		);
+
+		// get vars
+		$vars = $this->db->get_javascript_vars();
+
+		// localise with wp function
+		wp_localize_script( 'jquery_commentpress', 'CommentpressSettings', $vars );
 
 		// add jQuery Scroll-To plugin
 		wp_enqueue_script(
-
 			'jquery_scrollto',
 			plugins_url( 'commentpress-core/assets/js/jquery.scrollTo.js', COMMENTPRESS_PLUGIN_FILE ),
 			array( 'jquery_commentpress' ),
 			COMMENTPRESS_VERSION // version
-
 		);
 
 		// add jQuery Cookie plugin (renamed to jquery.biscuit.js because some hosts don't like 'cookie' in the filename)
 		wp_enqueue_script(
-
 			'jquery_cookie',
 			plugins_url( 'commentpress-core/assets/js/jquery.biscuit.js', COMMENTPRESS_PLUGIN_FILE ),
 			array( 'jquery_commentpress' ),
 			COMMENTPRESS_VERSION // version
-
 		);
 
-		/**
-		 * Prior to WP3.2 (IIRC), jQuery UI has to be added separately, as the
-		 * built in one was not sufficiently up-to-date. This is no longer the
-		 * case, so the independent jQuery UI package has been removed from
-		 * CommentPress Core in favour of the built-in one.
-		 */
+		// optionally get text highlighter
+		$this->get_text_highlighter();
+
+	}
+
+
+
+	/**
+	 * Enqueue our text highlighter script
+	 *
+	 * @return void
+	 */
+	public function get_text_highlighter() {
+
+		// only allow text highlighting on non-touch devices (allow testing override)
+		if ( ! $this->db->is_touch() OR ( defined( 'COMMENTPRESS_TOUCH_SELECT' ) AND COMMENTPRESS_TOUCH_SELECT ) ) {
+
+			// bail if not a commentable page/post
+			if ( ! $this->parent_obj->is_commentable() ) {
+				return;
+			}
+
+			// default to minified scripts
+			$debug_state = '.min';
+
+			// target different scripts when debugging
+			if ( defined( 'SCRIPT_DEBUG' ) AND SCRIPT_DEBUG === true ) {
+
+				// use uncompressed scripts
+				$debug_state = '';
+
+			}
+
+			// add jQuery wrapSelection plugin
+			wp_enqueue_script(
+				'jquery_wrapselection',
+				plugins_url( 'commentpress-core/assets/js/jquery.wrap-selection' . $debug_state . '.js', COMMENTPRESS_PLUGIN_FILE ),
+				array( 'jquery_commentpress' ),
+				COMMENTPRESS_VERSION // version
+			);
+
+			// add jQuery highlighter plugin
+			wp_enqueue_script(
+				'jquery_highlighter',
+				plugins_url( 'commentpress-core/assets/js/jquery.highlighter' . $debug_state . '.js', COMMENTPRESS_PLUGIN_FILE ),
+				array( 'jquery_wrapselection' ),
+				COMMENTPRESS_VERSION // version
+			);
+
+			// add jQuery text highlighter plugin
+			wp_enqueue_script(
+				'jquery_texthighlighter',
+				plugins_url( 'commentpress-core/assets/js/jquery.texthighlighter' . $debug_state . '.js', COMMENTPRESS_PLUGIN_FILE ),
+				array( 'jquery_highlighter' ),
+				COMMENTPRESS_VERSION // version
+			);
+
+			// define popover for textblocks
+			$popover_textblock = '<span class="popover-holder"><div class="popover-holder-inner"><div class="popover-holder-caret"></div><div class="popover-holder-btn-left"><span class="popover-holder-btn-left-comment">' . __( 'Comment', 'commentpress-core' ) . '</span><span class="popover-holder-btn-left-quote">' . __( 'Quote &amp; Comment', 'commentpress-core' ) . '</span></div><div class="popover-holder-btn-right">&times;</div></div></span>';
+
+			// define popover for comments
+			$popover_comment = '<span class="comment-popover-holder"><div class="popover-holder-inner"><div class="popover-holder-caret"></div><div class="popover-holder-btn-left"><span class="comment-popover-holder-btn-left-quote">' . __( 'Quote', 'commentpress-core' ) . '</span></div><div class="popover-holder-btn-right">&times;</div></div></span>';
+
+			// define localisation array
+			$texthighlighter_vars = array(
+				'popover_textblock' => $popover_textblock,
+				'popover_comment' => $popover_comment,
+			);
+
+			// create translations
+			$texthighlighter_translations = array(
+				'dialog_title' => __( 'Are you sure?', 'commentpress-core' ),
+				'dialog_content' => __( 'You have not yet submitted your comment. Are you sure you want to discard it?', 'commentpress-core' ),
+				'dialog_yes' => __( 'Discard', 'commentpress-core' ),
+				'dialog_no' => __( 'Keep', 'commentpress-core' ),
+				'backlink_text' => __( 'Back', 'commentpress-core' ),
+			);
+
+			// add to vars
+			$texthighlighter_vars['localisation'] = $texthighlighter_translations;
+
+			// localise with wp function
+			wp_localize_script( 'jquery_texthighlighter', 'CommentpressTextSelectorSettings', $texthighlighter_vars );
+
+		}
 
 	}
 
@@ -302,26 +381,22 @@ class CommentpressCoreDisplay {
 
 			// add our javascript script and dependencies
 			wp_enqueue_script(
-
 				'commentpress_custom_quicktags',
 				plugin_dir_url( COMMENTPRESS_PLUGIN_FILE ) . 'commentpress-core/assets/js/cp_quicktags_3.3.js',
 				array( 'quicktags' ),
 				COMMENTPRESS_VERSION, // version
 				true // in footer
-
 			);
 
 		} else {
 
 			// add our javascript script and dependencies
 			wp_enqueue_script(
-
 				'commentpress_custom_quicktags',
 				plugin_dir_url( COMMENTPRESS_PLUGIN_FILE ) . 'commentpress-core/assets/js/cp_quicktags.js',
 				array( 'quicktags' ),
 				COMMENTPRESS_VERSION, // version
 				false // not in footer (but may need to be in WP 3.3)
-
 			);
 
 		}
@@ -339,13 +414,11 @@ class CommentpressCoreDisplay {
 
 		// add jQuery UI stylesheet -> needed for resizable columns
 		wp_enqueue_style(
-
 			'cp_jquery_ui_base',
 			plugins_url( 'commentpress-core/assets/css/jquery.ui.css', COMMENTPRESS_PLUGIN_FILE ),
 			false,
 			COMMENTPRESS_VERSION, // version
 			'all' // media
-
 		);
 
 	}
@@ -359,6 +432,9 @@ class CommentpressCoreDisplay {
 	 */
 	public function is_tinymce_allowed() {
 
+		// default to allowed
+		$allowed = true;
+
 		// check option
 		if (
 
@@ -367,39 +443,41 @@ class CommentpressCoreDisplay {
 
 		) {
 
-			// --<
-			return false;
+			// disallow
+			$allowed = false;
 
-		}
+		} else {
 
-		// don't return TinyMCE for touchscreens, mobile phones or tablets
-		if (
-			( isset( $this->db->is_mobile_touch ) AND $this->db->is_mobile_touch ) OR
-			( isset( $this->db->is_mobile ) AND $this->db->is_mobile ) OR
-			( isset( $this->db->is_tablet ) AND $this->db->is_tablet )
-		) {
+			// don't return TinyMCE for touchscreens, mobile phones or tablets
+			if (
+				( isset( $this->db->is_mobile_touch ) AND $this->db->is_mobile_touch ) OR
+				( isset( $this->db->is_mobile ) AND $this->db->is_mobile ) OR
+				( isset( $this->db->is_tablet ) AND $this->db->is_tablet )
+			) {
 
-			// --<
-			return false;
+				// disallow
+				$allowed = false;
+
+			}
 
 		}
 
 		// --<
-		return true;
+		return apply_filters( 'commentpress_is_tinymce_allowed', $allowed );
 
 	}
 
 
 
 	/**
-	 * Get built-in TinyMCE scripts from Wordpress Includes directory
+	 * Get built-in TinyMCE scripts from WordPress Includes directory
 	 *
 	 * @return void
 	 */
 	public function get_tinymce() {
 
 		// check if we can
-		if ( !$this->is_tinymce_allowed() ) {
+		if ( ! $this->is_tinymce_allowed() ) {
 
 			// --<
 			return;
@@ -430,9 +508,9 @@ class CommentpressCoreDisplay {
 
 				// all TinyMCE scripts
 				$scripts .= '<!-- TinyMCE -->
-<script type="text/javascript" src="'.$site_http_root.'wp-includes/js/tinymce/tiny_mce.js"></script>
-<script type="text/javascript" src="'.$site_http_root.'wp-includes/js/tinymce/langs/wp-langs-en.js?ver=20081129"></script>
-'."\n";
+<script type="text/javascript" src="' . $site_http_root . 'wp-includes/js/tinymce/tiny_mce.js"></script>
+<script type="text/javascript" src="' . $site_http_root . 'wp-includes/js/tinymce/langs/wp-langs-en.js?ver=20081129"></script>
+' . "\n";
 
 				// add our init
 				$scripts .= $this->_get_tinymce_init();
@@ -501,7 +579,7 @@ HELPTEXT;
 				$count = count( $this->db->get_approved_comments( $item->ID ) );
 
 				// write list item
-				echo '<li class="title"><a href="'.get_permalink( $item->ID ).'">'.get_the_title( $item->ID ).' ('.$count.')</a></li>'."\n";
+				echo '<li class="title"><a href="' . get_permalink( $item->ID ) . '">' . get_the_title( $item->ID ) . ' (' . $count . ')</a></li>' . "\n";
 
 			}
 
@@ -531,7 +609,7 @@ HELPTEXT;
 					//print_r( $authors ); die();
 
 					// if we get some
-					if ( !empty( $authors ) ) {
+					if ( ! empty( $authors ) ) {
 
 						// use the Co-Authors format of "name, name, name & name"
 						$author_html = '';
@@ -579,10 +657,10 @@ HELPTEXT;
 						}
 
 						// add citation
-						$_html .= '<cite class="fn">'.$author_html.'</cite>'."\n";
+						$_html .= '<cite class="fn">' . $author_html . '</cite>' . "\n";
 
 						// add permalink
-						$_html .= '<p class="post_activity_date">'.esc_html( get_the_time( __( 'l, F jS, Y', 'commentpress-core' ) ), $item->ID ).'</p>'."\n";
+						$_html .= '<p class="post_activity_date">' . esc_html( get_the_time( __( 'l, F jS, Y', 'commentpress-core' ) ), $item->ID ) . '</p>' . "\n";
 
 					}
 
@@ -599,20 +677,20 @@ HELPTEXT;
 					}
 
 					// add citation
-					$_html .= '<cite class="fn">'.$this->echo_post_author( $author_id, false ).'</cite>';
+					$_html .= '<cite class="fn">' . $this->echo_post_author( $author_id, false ) . '</cite>';
 
 					// add permalink
-					$_html .= '<p class="post_activity_date">'.esc_html( get_the_time( __( 'l, F jS, Y', 'commentpress-core' ) ), $item->ID ).'</p>';
+					$_html .= '<p class="post_activity_date">' . esc_html( get_the_time( __( 'l, F jS, Y', 'commentpress-core' ) ), $item->ID ) . '</p>';
 
 				}
 
 				// write list item
 				echo '<li class="title">
 				<div class="post-identifier">
-				'.$_html.'
+				' . $_html . '
 				</div>
-				<a href="'.get_permalink( $item->ID ).'" class="post_activity_link">'.get_the_title( $item->ID ).' ('.$count.')</a>
-				</li>'."\n";
+				<a href="' . get_permalink( $item->ID ) . '" class="post_activity_link">' . get_the_title( $item->ID ) . ' (' . $count . ')</a>
+				</li>' . "\n";
 
 			}
 
@@ -636,7 +714,7 @@ HELPTEXT;
 		$user = get_userdata( $author_id );
 
 		// kick out if we don't have a user with that ID
-		if ( !is_object( $user ) ) { return; }
+		if ( ! is_object( $user ) ) { return; }
 
 		// access plugin
 		global $commentpress_core, $post;
@@ -696,7 +774,6 @@ HELPTEXT;
 
 		// set list pages defaults
 		$args = array(
-
 			'sort_column' => 'menu_order, post_title',
 			'menu_class' => 'menu',
 			'include' => '',
@@ -705,7 +782,6 @@ HELPTEXT;
 			'show_home' => false,
 			'link_before' => '',
 			'link_after' => ''
-
 		);
 		*/
 
@@ -714,12 +790,10 @@ HELPTEXT;
 
 			// try and use it
 			wp_nav_menu( array(
-
 				'theme_location' => 'toc',
 				'echo' => true,
 				'container' => '',
 				'items_wrap' => '%3$s',
-
 			) );
 
 			// --<
@@ -743,7 +817,7 @@ HELPTEXT;
 			$title_page_title = apply_filters( 'cp_title_page_title', $title_page_title );
 
 			// echo list item
-			echo '<li class="page_item page-item-'.$welcome_id.'"><a href="'.get_permalink( $welcome_id ).'">'.$title_page_title.'</a></li>';
+			echo '<li class="page_item page-item-' . $welcome_id . '"><a href="' . get_permalink( $welcome_id ) . '">' . $title_page_title . '</a></li>';
 
 		}
 
@@ -757,13 +831,13 @@ HELPTEXT;
 		$exclude = $this->db->option_get( 'cp_special_pages' );
 
 		// do we have any?
-		if ( !$exclude ) { $exclude = array(); }
+		if ( ! $exclude ) { $exclude = array(); }
 
 		// exclude title page, if we have one
 		if ( $welcome_id !== false ) { $exclude[] = $welcome_id; }
 
 		// did we get any passed to us?
-		if ( !empty( $exclude_pages ) ) {
+		if ( ! empty( $exclude_pages ) ) {
 
 			// merge arrays
 			$exclude = array_merge( $exclude, $exclude_pages );
@@ -772,7 +846,6 @@ HELPTEXT;
 
 		// set list pages defaults
 		$defaults = array(
-
 			'depth' => $depth,
 			'show_date' => '',
 			'date_format' => $this->db->option_get( 'date_format' ),
@@ -784,11 +857,10 @@ HELPTEXT;
 			'sort_column' => 'menu_order, post_title',
 			'link_before' => '',
 			'link_after' => '',
-			'exclude_tree' => ''
-
+			'exclude_tree' => '',
 		);
 
-		// use Wordpress function to echo
+		// use WordPress function to echo
 		wp_list_pages( $defaults );
 
 	}
@@ -841,40 +913,26 @@ HELPTEXT;
 			default:
 
 				// define title text
-				$title_text = sprintf( _n(
-
-					// singular
-					'There is %d comment written for this paragraph',
-
-					// plural
-					'There are %d comments written for this paragraph',
-
-					// number
-					$comment_count,
-
-					// domain
-					'commentpress-core'
-
-				// substitution
-				), $comment_count );
+				$title_text = sprintf(
+					_n(
+						'There is %d comment written for this paragraph', // singular
+						'There are %d comments written for this paragraph', // plural
+						$comment_count, // number
+						'commentpress-core' // domain
+					),
+					$comment_count // substitution
+				);
 
 				// define add comment text
-				$add_text = sprintf( _n(
-
-					// singular
-					'Leave a comment on paragraph %d',
-
-					// plural
-					'Leave a comment on paragraph %d',
-
-					// number
-					$para_num,
-
-					// domain
-					'commentpress-core'
-
-				// substitution
-				), $para_num );
+				$add_text = sprintf(
+					_n(
+						'Leave a comment on paragraph %d', // singular
+						'Leave a comment on paragraph %d', // plural
+						$para_num, // number
+						'commentpress-core' // domain
+					),
+					$para_num // substitution
+				);
 
 				break;
 
@@ -884,40 +942,26 @@ HELPTEXT;
 			case 'line':
 
 				// define title text
-				$title_text = sprintf( _n(
-
-					// singular
-					'There is %d comment written for this line',
-
-					// plural
-					'There are %d comments written for this line',
-
-					// number
-					$comment_count,
-
-					// domain
-					'commentpress-core'
-
-				// substitution
-				), $comment_count );
+				$title_text = sprintf(
+					_n(
+					'There is %d comment written for this line', // singular
+					'There are %d comments written for this line', // plural
+					$comment_count, // number
+					'commentpress-core' // domain
+					),
+					$comment_count // substitution
+				);
 
 				// define add comment text
-				$add_text = sprintf( _n(
-
-					// singular
-					'Leave a comment on line %d',
-
-					// plural
-					'Leave a comment on line %d',
-
-					// number
-					$para_num,
-
-					// domain
-					'commentpress-core'
-
-				// substitution
-				), $para_num );
+				$add_text = sprintf(
+					_n(
+						'Leave a comment on line %d', // singular
+						'Leave a comment on line %d', // plural
+						$para_num, // number
+						'commentpress-core' // domain
+					),
+					$para_num // substitution
+				);
 
 				break;
 
@@ -928,50 +972,36 @@ HELPTEXT;
 			case 'block':
 
 				// define title text
-				$title_text = sprintf( _n(
-
-					// singular
-					'There is %d comment written for this block',
-
-					// plural
-					'There are %d comments written for this block',
-
-					// number
-					$comment_count,
-
-					// domain
-					'commentpress-core'
-
-				// substitution
-				), $comment_count );
+				$title_text = sprintf(
+					_n(
+						'There is %d comment written for this block', // singular
+						'There are %d comments written for this block', // plural
+						$comment_count, // number
+						'commentpress-core' // domain
+					),
+					$comment_count // substitution
+				);
 
 				// define add comment text
-				$add_text = sprintf( _n(
-
-					// singular
-					'Leave a comment on block %d',
-
-					// plural
-					'Leave a comment on block %d',
-
-					// number
-					$para_num,
-
-					// domain
-					'commentpress-core'
-
-				// substitution
-				), $para_num );
+				$add_text = sprintf(
+					_n(
+						'Leave a comment on block %d', // singular
+						'Leave a comment on block %d', // plural
+						$para_num, // number
+						'commentpress-core' // domain
+					),
+					$para_num // substitution
+				);
 
 				break;
 
 		}
 
 		// define small
-		$small = '<small class="comment_count" title="'.$title_text.'">'.(string) $comment_count.'</small>';
+		$small = '<small class="comment_count" title="' . $title_text . '">' . (string) $comment_count . '</small>';
 
 		// define HTML for comment icon
-		$comment_icon = '<span class="commenticonbox"><a class="para_permalink'.$class.'" href="#'.$text_signature.'" title="'.$add_text.'">'.$add_text.'</a> '.$small.'</span>'."\n";
+		$comment_icon = '<span class="commenticonbox"><a class="para_permalink' . $class . '" href="#' . $text_signature . '" title="' . $add_text . '">' . $add_text . '</a> ' . $small . '</span>' . "\n";
 
 		// --<
 		return $comment_icon;
@@ -1008,25 +1038,18 @@ HELPTEXT;
 			default:
 
 				// define permalink text
-				$permalink_text = sprintf( _n(
-
-					// singular
-					'Permalink for paragraph %d',
-
-					// plural
-					'Permalink for paragraph %d',
-
-					// number
-					$para_num,
-
-					// domain
-					'commentpress-core'
-
-				// substitution
-				), $para_num );
+				$permalink_text = sprintf(
+					_n(
+						'Permalink for paragraph %d', // singular
+						'Permalink for paragraph %d', // plural
+						$para_num, // number
+						'commentpress-core' // domain
+					),
+					$para_num // substitution
+				);
 
 				// define paragraph marker
-				$para_marker = '<span class="para_marker"><a id="'.$text_signature.'" href="#'.$text_signature.'" title="'.$permalink_text.'">&para; <span>'.(string) $para_num.'</span></a></span>';
+				$para_marker = '<span class="para_marker"><a class="textblock_permalink" id="' . $text_signature . '" href="#' . $text_signature . '" title="' . $permalink_text . '">&para; <span>' . (string) $para_num . '</span></a></span>';
 
 				break;
 
@@ -1036,25 +1059,18 @@ HELPTEXT;
 			case 'line':
 
 				// define permalink text
-				$permalink_text = sprintf( _n(
-
-					// singular
-					'Permalink for line %d',
-
-					// plural
-					'Permalink for line %d',
-
-					// number
-					$para_num,
-
-					// domain
-					'commentpress-core'
-
-				// substitution
-				), $para_num );
+				$permalink_text = sprintf(
+					_n(
+						'Permalink for line %d', // singular
+						'Permalink for line %d', // plural
+						$para_num, // number
+						'commentpress-core' // domain
+					),
+					$para_num // substitution
+				);
 
 				// define paragraph marker
-				$para_marker = '<span class="para_marker"><a id="'.$text_signature.'" href="#'.$text_signature.'" title="'.$permalink_text.'">&para; <span>'.(string) $para_num.'</span></a></span>';
+				$para_marker = '<span class="para_marker"><a class="textblock_permalink" id="' . $text_signature . '" href="#' . $text_signature . '" title="' . $permalink_text . '">&para; <span>' . (string) $para_num . '</span></a></span>';
 
 				break;
 
@@ -1065,32 +1081,25 @@ HELPTEXT;
 			case 'block':
 
 				// define permalink text
-				$permalink_text = sprintf( _n(
-
-					// singular
-					'Permalink for block %d',
-
-					// plural
-					'Permalink for block %d',
-
-					// number
-					$para_num,
-
-					// domain
-					'commentpress-core'
-
-				// substitution
-				), $para_num );
+				$permalink_text = sprintf(
+					_n(
+						'Permalink for block %d', // singular
+						'Permalink for block %d', // plural
+						$para_num, // number
+						'commentpress-core' // domain
+					),
+					$para_num // substitution
+				);
 
 				// define paragraph marker
-				$para_marker = '<span class="para_marker"><a id="'.$text_signature.'" href="#'.$text_signature.'" title="'.$permalink_text.'">&para; <span>'.(string) $para_num.'</span></a></span>';
+				$para_marker = '<span class="para_marker"><a class="textblock_permalink" id="' . $text_signature . '" href="#' . $text_signature . '" title="' . $permalink_text . '">&para; <span>' . (string) $para_num . '</span></a></span>';
 
 				break;
 
 		}
 
 		// define HTML for paragraph icon
-		$paragraph_icon = $para_marker."\n";
+		$paragraph_icon = $para_marker . "\n";
 
 		// --<
 		return $paragraph_icon;
@@ -1116,31 +1125,31 @@ HELPTEXT;
 			case 'ul':
 
 				// define list tag
-				$para_tag = '<'.$tag.' class="textblock" id="textblock-'.$text_signature.'">'.
-							'<li class="list_commenticon">'.$commenticon.'</li>';
+				$para_tag = '<' . $tag . ' class="textblock" id="textblock-' . $text_signature . '">' .
+							'<li class="list_commenticon">' . $commenticon . '</li>';
 				break;
 
 			case 'ol':
 
 				// define list tag
-				$para_tag = '<'.$tag.' class="textblock" id="textblock-'.$text_signature.'" start="0">'.
-							'<li class="list_commenticon">'.$commenticon.'</li>';
+				$para_tag = '<' . $tag . ' class="textblock" id="textblock-' . $text_signature . '" start="0">' .
+							'<li class="list_commenticon">' . $commenticon . '</li>';
 				break;
 
 			// compat with WP Footnotes
 			case 'ol class="footnotes"':
 
 				// define list tag
-				$para_tag = '<ol class="footnotes textblock" id="textblock-'.$text_signature.'" start="0">'.
-							'<li class="list_commenticon">'.$commenticon.'</li>';
+				$para_tag = '<ol class="footnotes textblock" id="textblock-' . $text_signature . '" start="0">' .
+							'<li class="list_commenticon">' . $commenticon . '</li>';
 				break;
 
 			// compat with WP Footnotes
 			case ( substr( $tag, 0 , 10 ) == 'ol start="' ):
 
 				// define list tag
-				$para_tag = '<ol class="textblock" id="textblock-'.$text_signature.'" start="'.($start - 1).'">'.
-							'<li class="list_commenticon">'.$commenticon.'</li>';
+				$para_tag = '<ol class="textblock" id="textblock-' . $text_signature . '" start="' . ($start - 1) . '">' .
+							'<li class="list_commenticon">' . $commenticon . '</li>';
 				break;
 
 			case 'p':
@@ -1150,7 +1159,7 @@ HELPTEXT;
 			case 'p style="text-align: left;"':
 
 				// define para tag
-				$para_tag = '<'.$tag.' class="textblock" id="textblock-'.$text_signature.'">'.$commenticon;
+				$para_tag = '<' . $tag . ' class="textblock" id="textblock-' . $text_signature . '">' . $commenticon;
 				break;
 
 			case 'p style="text-align:right"':
@@ -1159,7 +1168,7 @@ HELPTEXT;
 			case 'p style="text-align: right;"':
 
 				// define para tag
-				$para_tag = '<'.$tag.' class="textblock textblock-right" id="textblock-'.$text_signature.'">'.$commenticon;
+				$para_tag = '<' . $tag . ' class="textblock textblock-right" id="textblock-' . $text_signature . '">' . $commenticon;
 				break;
 
 			case 'p style="text-align:center"':
@@ -1168,7 +1177,7 @@ HELPTEXT;
 			case 'p style="text-align: center;"':
 
 				// define para tag
-				$para_tag = '<'.$tag.' class="textblock textblock-center" id="textblock-'.$text_signature.'">'.$commenticon;
+				$para_tag = '<' . $tag . ' class="textblock textblock-center" id="textblock-' . $text_signature . '">' . $commenticon;
 				break;
 
 			case 'p style="text-align:justify"':
@@ -1177,25 +1186,25 @@ HELPTEXT;
 			case 'p style="text-align: justify;"':
 
 				// define para tag
-				$para_tag = '<'.$tag.' class="textblock textblock-justify" id="textblock-'.$text_signature.'">'.$commenticon;
+				$para_tag = '<' . $tag . ' class="textblock textblock-justify" id="textblock-' . $text_signature . '">' . $commenticon;
 				break;
 
 			case 'p class="notes"':
 
 				// define para tag
-				$para_tag = '<p class="notes textblock" id="textblock-'.$text_signature.'">'.$commenticon;
+				$para_tag = '<p class="notes textblock" id="textblock-' . $text_signature . '">' . $commenticon;
 				break;
 
 			case 'div':
 
 				// define opening tag (we'll close it later)
-				$para_tag = '<div class="textblock" id="textblock-'.$text_signature.'">'.$commenticon;
+				$para_tag = '<div class="textblock" id="textblock-' . $text_signature . '">' . $commenticon;
 				break;
 
 			case 'span':
 
 				// define opening tag (we'll close it later)
-				$para_tag = '<span class="textblock" id="textblock-'.$text_signature.'">'.$commenticon;
+				$para_tag = '<span class="textblock" id="textblock-' . $text_signature . '">' . $commenticon;
 				break;
 
 		}
@@ -1223,7 +1232,7 @@ HELPTEXT;
 	public function get_signature_input( $text_sig = '' ) {
 
 		// define input tag
-		$input = '<input type="hidden" name="text_signature" value="'.$text_sig.'" id="text_signature" />';
+		$input = '<input type="hidden" name="text_signature" value="' . $text_sig . '" id="text_signature" />';
 
 		// --<
 		return $input;
@@ -1244,17 +1253,17 @@ HELPTEXT;
 
 			case 'comments':
 				// define minimise button
-				$tag = '<span id="cp_minimise_all_comments" title="'.__( 'Minimise all Comment Sections', 'commentpress-core' ).'"></span>';
+				$tag = '<span id="cp_minimise_all_comments" title="' . __( 'Minimise all Comment Sections', 'commentpress-core' ) . '"></span>';
 				break;
 
 			case 'activity':
 				// define minimise button
-				$tag = '<span id="cp_minimise_all_activity" title="'.__( 'Minimise all Activity Sections', 'commentpress-core' ).'"></span>';
+				$tag = '<span id="cp_minimise_all_activity" title="' . __( 'Minimise all Activity Sections', 'commentpress-core' ) . '"></span>';
 				break;
 
 			case 'toc':
 				// define minimise button
-				$tag = '<span id="cp_minimise_all_contents" title="'.__( 'Minimise all Contents Sections', 'commentpress-core' ).'"></span>';
+				$tag = '<span id="cp_minimise_all_contents" title="' . __( 'Minimise all Contents Sections', 'commentpress-core' ) . '"></span>';
 				break;
 
 		}
@@ -1274,7 +1283,7 @@ HELPTEXT;
 	public function get_header_min_link() {
 
 		// define minimise button
-		$link = '<li><a href="#" id="btn_header_min" class="css_btn" title="'.__( 'Minimise Header', 'commentpress-core' ).'">'.__( 'Minimise Header', 'commentpress-core' ).'</a></li>'."\n";
+		$link = '<li><a href="#" id="btn_header_min" class="css_btn" title="' . __( 'Minimise Header', 'commentpress-core' ) . '">' . __( 'Minimise Header', 'commentpress-core' ) . '</a></li>' . "\n";
 
 		// --<
 		return $link;
@@ -1299,7 +1308,7 @@ HELPTEXT;
 		if ( $src != '' ) {
 
 			// construct link
-			$html .= '<img src="'.$src.'" />';
+			$html .= '<img src="' . $src . '" />';
 
 		}
 
@@ -1307,7 +1316,7 @@ HELPTEXT;
 		if ( $url != '' ) {
 
 			// construct link around image
-			$html .= '<a href="'.$url.'">'.$html.'</a>';
+			$html .= '<a href="' . $url . '">' . $html . '</a>';
 
 		}
 
@@ -1319,7 +1328,7 @@ HELPTEXT;
 
 
 	/**
-	 * Got the Wordpress admin page
+	 * Got the WordPress admin page
 	 *
 	 * @return str $admin_page The HTML for the admin page
 	 */
@@ -1329,13 +1338,13 @@ HELPTEXT;
 		$admin_page = '';
 
 		// open div
-		$admin_page .= '<div class="wrap" id="commentpress_admin_wrapper">'."\n\n";
+		$admin_page .= '<div class="wrap" id="commentpress_admin_wrapper">' . "\n\n";
 
 		// get our form
 		$admin_page .= $this->_get_admin_form();
 
 		// close div
-		$admin_page .= '</div>'."\n\n";
+		$admin_page .= '</div>' . "\n\n";
 
 		// --<
 		return $admin_page;
@@ -1395,42 +1404,40 @@ HELPTEXT;
 
 			// if there are options
 			if ( $upgrade != '' ) {
-
 				$options_text = __( ' The following options have become available in the new version.', 'commentpress-core' );
-
 			}
 
 			// define admin page
 			$admin_page = '
 			<div class="icon32" id="icon-options-general"><br/></div>
 
-			<h2>'.__( 'CommentPress Core Upgrade', 'commentpress-core' ).'</h2>
+			<h2>' . __( 'CommentPress Core Upgrade', 'commentpress-core' ) . '</h2>
 
 
 
-			<form method="post" action="'.htmlentities($url.'&updated=true').'">
+			<form method="post" action="' . htmlentities($url . '&updated=true') . '">
 
-			'.wp_nonce_field( 'commentpress_admin_action', 'commentpress_nonce', true, false ).'
-			'.wp_referer_field( false ).'
+			' . wp_nonce_field( 'commentpress_admin_action', 'commentpress_nonce', true, false ) . '
+			' . wp_referer_field( false ) . '
 			<input id="cp_upgrade" name="cp_upgrade" value="1" type="hidden" />
 
-			<h3>'.__( 'Please upgrade CommentPress Core', 'commentpress-core' ).'</h3>
+			<h3>' . __( 'Please upgrade CommentPress Core', 'commentpress-core' ) . '</h3>
 
-			<p>'.__( 'It looks like you are running an older version of CommentPress Core.', 'commentpress-core' ).$options_text.'</p>
+			<p>' . __( 'It looks like you are running an older version of CommentPress Core.', 'commentpress-core' ) . $options_text . '</p>
 
 			<table class="form-table">
 
-			'.$upgrade.'
+			' . $upgrade . '
 
 			</table>
 
 			<input type="hidden" name="action" value="update" />
 
 			<p class="submit">
-				<input type="submit" name="commentpress_submit" value="'.__( 'Upgrade', 'commentpress-core' ).'" class="button-primary" />
+				<input type="submit" name="commentpress_submit" value="' . __( 'Upgrade', 'commentpress-core' ) . '" class="button-primary" />
 			</p>
 
-			</form>'."\n\n\n\n";
+			</form>' . "\n\n\n\n";
 
 		} else {
 
@@ -1438,22 +1445,22 @@ HELPTEXT;
 			$admin_page = '
 			<div class="icon32" id="icon-options-general"><br/></div>
 
-			<h2>'.__( 'CommentPress Core Settings', 'commentpress-core' ).'</h2>
+			<h2>' . __( 'CommentPress Core Settings', 'commentpress-core' ) . '</h2>
 
-			<form method="post" action="'.htmlentities($url.'&updated=true').'">
+			<form method="post" action="' . htmlentities($url . '&updated=true') . '">
 
-			'.wp_nonce_field( 'commentpress_admin_action', 'commentpress_nonce', true, false ).'
-			'.wp_referer_field( false ).'
+			' . wp_nonce_field( 'commentpress_admin_action', 'commentpress_nonce', true, false ) . '
+			' . wp_referer_field( false ) . '
 
-			'.
+			' .
 
-			$this->_get_options().
+			$this->_get_options() .
 
 			'<input type="hidden" name="action" value="update" />
 
-			'.$this->_get_submit().'
+			' . $this->_get_submit() . '
 
-			</form>'."\n\n\n\n";
+			</form>' . "\n\n\n\n";
 
 		}
 
@@ -1473,21 +1480,21 @@ HELPTEXT;
 
 		// define CommentPress Core theme options
 		$options = '
-		<p>'.__( 'When the CommentPress Default Theme (or a valid CommentPress Child Theme) is active, the following options modify its behaviour.', 'commentpress-core' ).'</p>
+		<p>' . __( 'When a supplied CommentPress theme (or a valid CommentPress child theme) is active, the following options modify its behaviour.', 'commentpress-core' ) . '</p>
 
 
 
 		<hr />
 
-		<h3>'.__( 'Global Options', 'commentpress-core' ).'</h3>
+		<h3>' . __( 'Global Options', 'commentpress-core' ) . '</h3>
 
 		<table class="form-table">
 
-		'.$this->_get_deactivate().'
+		' . $this->_get_deactivate() . '
 
-		'.$this->_get_reset().'
+		' . $this->_get_reset() . '
 
-		'.$this->_get_optional_options().'
+		' . $this->_get_optional_options() . '
 
 		</table>
 
@@ -1495,14 +1502,14 @@ HELPTEXT;
 
 		<hr />
 
-		<h3>'.__( 'Table of Contents', 'commentpress-core' ).'</h3>
+		<h3>' . __( 'Table of Contents', 'commentpress-core' ) . '</h3>
 
-		<p>'.__( 'Choose how you want your Table of Contents to appear and function.<br />
-		<strong style="color: red;">NOTE!</strong> When Chapters are Pages, the TOC will always show Sub-Pages, since collapsing the TOC makes no sense in that situation.', 'commentpress-core' ).'</p>
+		<p>' . __( 'Choose how you want your Table of Contents to appear and function.<br />
+		<strong style="color: red;">NOTE!</strong> When Chapters are Pages, the TOC will always show Sub-Pages, since collapsing the TOC makes no sense in that situation.', 'commentpress-core' ) . '</p>
 
 		<table class="form-table">
 
-		'.$this->_get_toc().'
+		' . $this->_get_toc() . '
 
 		</table>
 
@@ -1510,42 +1517,42 @@ HELPTEXT;
 
 		<hr />
 
-		<h3>'.__( 'Page Display Options', 'commentpress-core' ).'</h3>
+		<h3>' . __( 'Page Display Options', 'commentpress-core' ) . '</h3>
 
 		<table class="form-table">
 
 			<tr valign="top">
-				<th scope="row"><label for="cp_featured_images">'.__( 'Enable Featured Images (Note: if you have already implemented this in a child theme, you should choose "No")', 'commentpress-core' ).'</label></th>
+				<th scope="row"><label for="cp_featured_images">' . __( 'Enable Featured Images (Note: if you have already implemented this in a child theme, you should choose "No")', 'commentpress-core' ) . '</label></th>
 				<td><select id="cp_featured_images" name="cp_featured_images">
-						<option value="y" '.(($this->db->option_get('cp_featured_images', 'n') == 'y') ? ' selected="selected"' : '').'>'.__( 'Yes', 'commentpress-core' ).'</option>
-						<option value="n" '.(($this->db->option_get('cp_featured_images', 'n') == 'n') ? ' selected="selected"' : '').'>'.__( 'No', 'commentpress-core' ).'</option>
+						<option value="y" ' . (($this->db->option_get('cp_featured_images', 'n') == 'y') ? ' selected="selected"' : '') . '>' . __( 'Yes', 'commentpress-core' ) . '</option>
+						<option value="n" ' . (($this->db->option_get('cp_featured_images', 'n') == 'n') ? ' selected="selected"' : '') . '>' . __( 'No', 'commentpress-core' ) . '</option>
 					</select>
 				</td>
 			</tr>
 
 			<tr valign="top">
-				<th scope="row"><label for="cp_title_visibility">'.__( 'Default page title visibility (can be overridden on individual pages)', 'commentpress-core' ).'</label></th>
+				<th scope="row"><label for="cp_title_visibility">' . __( 'Default page title visibility (can be overridden on individual pages)', 'commentpress-core' ) . '</label></th>
 				<td><select id="cp_title_visibility" name="cp_title_visibility">
-						<option value="show" '.(($this->db->option_get('cp_title_visibility') == 'show') ? ' selected="selected"' : '').'>'.__( 'Show page titles', 'commentpress-core' ).'</option>
-						<option value="hide" '.(($this->db->option_get('cp_title_visibility') == 'hide') ? ' selected="selected"' : '').'>'.__( 'Hide page titles', 'commentpress-core' ).'</option>
+						<option value="show" ' . (($this->db->option_get('cp_title_visibility') == 'show') ? ' selected="selected"' : '') . '>' . __( 'Show page titles', 'commentpress-core' ) . '</option>
+						<option value="hide" ' . (($this->db->option_get('cp_title_visibility') == 'hide') ? ' selected="selected"' : '') . '>' . __( 'Hide page titles', 'commentpress-core' ) . '</option>
 					</select>
 				</td>
 			</tr>
 
 			<tr valign="top">
-				<th scope="row"><label for="cp_page_meta_visibility">'.__( 'Default page meta visibility (can be overridden on individual pages)', 'commentpress-core' ).'</label></th>
+				<th scope="row"><label for="cp_page_meta_visibility">' . __( 'Default page meta visibility (can be overridden on individual pages)', 'commentpress-core' ) . '</label></th>
 				<td><select id="cp_page_meta_visibility" name="cp_page_meta_visibility">
-						<option value="show" '.(($this->db->option_get('cp_page_meta_visibility') == 'show') ? ' selected="selected"' : '').'>'.__( 'Show page meta', 'commentpress-core' ).'</option>
-						<option value="hide" '.(($this->db->option_get('cp_page_meta_visibility') == 'hide') ? ' selected="selected"' : '').'>'.__( 'Hide page meta', 'commentpress-core' ).'</option>
+						<option value="show" ' . (($this->db->option_get('cp_page_meta_visibility') == 'show') ? ' selected="selected"' : '') . '>' . __( 'Show page meta', 'commentpress-core' ) . '</option>
+						<option value="hide" ' . (($this->db->option_get('cp_page_meta_visibility') == 'hide') ? ' selected="selected"' : '') . '>' . __( 'Hide page meta', 'commentpress-core' ) . '</option>
 					</select>
 				</td>
 			</tr>
 
-		'.$this->_get_textblock_meta().'
+		' . $this->_get_textblock_meta() . '
 
 			<tr valign="top">
-				<th scope="row"><label for="cp_excerpt_length">'.__( 'Blog excerpt length', 'commentpress-core' ).'</label></th>
-				<td><input type="text" id="cp_excerpt_length" name="cp_excerpt_length" value="'.$this->db->option_get('cp_excerpt_length').'" class="small-text" /> '.__( 'words', 'commentpress-core' ).'</td>
+				<th scope="row"><label for="cp_excerpt_length">' . __( 'Blog excerpt length', 'commentpress-core' ) . '</label></th>
+				<td><input type="text" id="cp_excerpt_length" name="cp_excerpt_length" value="' . $this->db->option_get('cp_excerpt_length') . '" class="small-text" /> ' . __( 'words', 'commentpress-core' ) . '</td>
 			</tr>
 
 		</table>
@@ -1554,13 +1561,13 @@ HELPTEXT;
 
 		<hr />
 
-		<h3>'.__( 'Commenting Options', 'commentpress-core' ).'</h3>
+		<h3>' . __( 'Commenting Options', 'commentpress-core' ) . '</h3>
 
 		<table class="form-table">
 
-		'.$this->_get_editor().'
+		' . $this->_get_editor() . '
 
-		'.$this->_get_override().'
+		' . $this->_get_override() . '
 
 		</table>
 
@@ -1568,30 +1575,32 @@ HELPTEXT;
 
 		<hr />
 
-		<h3>'.__( 'Theme Customisation', 'commentpress-core' ).'</h3>
+		<h3>' . __( 'Theme Customisation', 'commentpress-core' ) . '</h3>
 
-		<p>'.__( 'You can set a custom background colour in <em>Appearance &#8594; Background</em>.<br />
+		<p>' . __( 'You can set a custom background colour in <em>Appearance &#8594; Background</em>.<br />
 		You can also set a custom header image and header text colour in <em>Appearance &#8594; Header</em>.<br />
-		Below are extra options for changing how the theme looks.', 'commentpress-core' ).'</p>
+		Below are extra options for changing how the theme looks.', 'commentpress-core' ) . '</p>
 
 		<table class="form-table">
 
 			<tr valign="top" id="cp_header_bg_colour-row">
-				<th scope="row"><label for="cp_header_bg_colour">'.__( 'Header Background Colour', 'commentpress-core' ).'</label></th>
-				<td><input type="text" name="cp_header_bg_colour" id="cp_header_bg_colour" value="'.$this->db->option_get('cp_header_bg_colour').'" /><span class="description hide-if-js">'.__( 'If you want to hide header text, add <strong>#blank</strong> as text colour.', 'commentpress-core' ).'</span><input type="button" class="button hide-if-no-js" value="'.__( 'Select a Colour', 'commentpress-core' ).'" id="pickcolor" /><div id="color-picker" style="z-index: 100; background:#eee; border:1px solid #ccc; position:absolute; display:none;"></div></td>
+				<th scope="row"><label for="cp_header_bg_colour">' . __( 'Header Background Colour', 'commentpress-core' ) . '</label></th>
+				<td><input type="text" name="cp_header_bg_colour" id="cp_header_bg_colour" value="' . $this->db->option_get('cp_header_bg_colour') . '" /><span class="description hide-if-js">' . __( 'If you want to hide header text, add <strong>#blank</strong> as text colour.', 'commentpress-core' ) . '</span><input type="button" class="button hide-if-no-js" value="' . __( 'Select a Colour', 'commentpress-core' ) . '" id="pickcolor" /><div id="color-picker" style="z-index: 100; background:#eee; border:1px solid #ccc; position:absolute; display:none;"></div></td>
 			</tr>
 
 			<tr valign="top">
-				<th scope="row"><label for="cp_js_scroll_speed">'.__( 'Scroll speed', 'commentpress-core' ).'</label></th>
-				<td><input type="text" id="cp_js_scroll_speed" name="cp_js_scroll_speed" value="'.$this->db->option_get('cp_js_scroll_speed').'" class="small-text" /> '.__( 'milliseconds', 'commentpress-core' ).'</td>
+				<th scope="row"><label for="cp_js_scroll_speed">' . __( 'Scroll speed', 'commentpress-core' ) . '</label></th>
+				<td><input type="text" id="cp_js_scroll_speed" name="cp_js_scroll_speed" value="' . $this->db->option_get('cp_js_scroll_speed') . '" class="small-text" /> ' . __( 'milliseconds', 'commentpress-core' ) . '</td>
 			</tr>
 
 			<tr valign="top">
-				<th scope="row"><label for="cp_min_page_width">'.__( 'Minimum page width', 'commentpress-core' ).'</label></th>
-				<td><input type="text" id="cp_min_page_width" name="cp_min_page_width" value="'.$this->db->option_get('cp_min_page_width').'" class="small-text" /> '.__( 'pixels', 'commentpress-core' ).'</td>
+				<th scope="row"><label for="cp_min_page_width">' . __( 'Minimum page width', 'commentpress-core' ) . '</label></th>
+				<td><input type="text" id="cp_min_page_width" name="cp_min_page_width" value="' . $this->db->option_get('cp_min_page_width') . '" class="small-text" /> ' . __( 'pixels', 'commentpress-core' ) . '</td>
 			</tr>
 
-		'.$this->_get_sidebar().'
+		' . $this->_get_sidebar() . '
+
+		' . apply_filters( 'commentpress_theme_customisation_options', '' ) . '
 
 		</table>
 
@@ -1626,7 +1635,7 @@ HELPTEXT;
 			$types = apply_filters( 'cp_blog_type_options', $types );
 
 			// if we get some from a plugin, say...
-			if ( !empty( $types ) ) {
+			if ( ! empty( $types ) ) {
 
 				// define title
 				$type_title = __( 'Default Text Format', 'commentpress-core' );
@@ -1646,9 +1655,9 @@ HELPTEXT;
 
 				foreach( $types AS $type ) {
 					if ( $n == $blog_type ) {
-						$type_option_list[] = '<option value="'.$n.'" selected="selected">'.$type.'</option>';
+						$type_option_list[] = '<option value="' . $n . '" selected="selected">' . $type . '</option>';
 					} else {
-						$type_option_list[] = '<option value="'.$n.'">'.$type.'</option>';
+						$type_option_list[] = '<option value="' . $n . '">' . $type . '</option>';
 					}
 					$n++;
 				}
@@ -1657,9 +1666,9 @@ HELPTEXT;
 				// define upgrade
 				$html .= '
 				<tr valign="top">
-					<th scope="row"><label for="cp_blog_type">'.$type_title.'</label></th>
+					<th scope="row"><label for="cp_blog_type">' . $type_title . '</label></th>
 					<td><select id="cp_blog_type" name="cp_blog_type">
-							'.$type_options.'
+							' . $type_options . '
 						</select>
 					</td>
 				</tr>
@@ -1694,8 +1703,8 @@ HELPTEXT;
 				// define upgrade
 				$html .= '
 				<tr valign="top">
-					<th scope="row"><label for="cp_blog_workflow">'.$workflow_label.'</label></th>
-					<td><input id="cp_blog_workflow" name="cp_blog_workflow" value="1" type="checkbox" '.( $this->db->option_get('cp_blog_workflow') ? ' checked="checked"' : ''  ).' /></td>
+					<th scope="row"><label for="cp_blog_workflow">' . $workflow_label . '</label></th>
+					<td><input id="cp_blog_workflow" name="cp_blog_workflow" value="1" type="checkbox" ' . ( $this->db->option_get('cp_blog_workflow') ? ' checked="checked"' : ''  ) . ' /></td>
 
 				</tr>
 
@@ -1704,6 +1713,9 @@ HELPTEXT;
 			}
 
 		}
+
+
+		// TODO add infinite scroll switch when ready
 
 
 
@@ -1725,7 +1737,7 @@ HELPTEXT;
 		$upgrade = '';
 
 		// do we have the option to choose to hide textblock meta (new in 3.5.9)?
-		if ( !$this->db->option_exists( 'cp_textblock_meta' ) ) {
+		if ( ! $this->db->option_exists( 'cp_textblock_meta' ) ) {
 
 			// define labels
 			$label = __( 'Show paragraph meta (Number and Comment Icon)', 'commentpress-core' );
@@ -1735,10 +1747,10 @@ HELPTEXT;
 			// define upgrade
 			$upgrade .= '
 			<tr valign="top">
-				<th scope="row"><label for="cp_textblock_meta">'.$label.'</label></th>
+				<th scope="row"><label for="cp_textblock_meta">' . $label . '</label></th>
 				<td><select id="cp_textblock_meta" name="cp_textblock_meta">
-						<option value="y" selected="selected">'.$yes_label.'</option>
-						<option value="n">'.$no_label.'</option>
+						<option value="y" selected="selected">' . $yes_label . '</option>
+						<option value="n">' . $no_label . '</option>
 					</select>
 				</td>
 			</tr>
@@ -1748,7 +1760,7 @@ HELPTEXT;
 		}
 
 		// do we have the option to choose featured images (new in 3.5.4)?
-		if ( !$this->db->option_exists( 'cp_featured_images' ) ) {
+		if ( ! $this->db->option_exists( 'cp_featured_images' ) ) {
 
 			// define labels
 			$label = __( 'Enable Featured Images (Note: if you have already implemented this in a child theme, you should choose "No")', 'commentpress-core' );
@@ -1758,10 +1770,10 @@ HELPTEXT;
 			// define upgrade
 			$upgrade .= '
 			<tr valign="top">
-				<th scope="row"><label for="cp_featured_images">'.$label.'</label></th>
+				<th scope="row"><label for="cp_featured_images">' . $label . '</label></th>
 				<td><select id="cp_featured_images" name="cp_featured_images">
-						<option value="y" selected="selected">'.$yes_label.'</option>
-						<option value="n">'.$no_label.'</option>
+						<option value="y" selected="selected">' . $yes_label . '</option>
+						<option value="n">' . $no_label . '</option>
 					</select>
 				</td>
 			</tr>
@@ -1771,7 +1783,7 @@ HELPTEXT;
 		}
 
 		// do we have the option to choose the default sidebar (new in 3.3.3)?
-		if ( !$this->db->option_exists( 'cp_sidebar_default' ) ) {
+		if ( ! $this->db->option_exists( 'cp_sidebar_default' ) ) {
 
 			// define labels
 			$label = __( 'Which sidebar do you want to be active by default? (can be overridden on individual pages)', 'commentpress-core' );
@@ -1782,11 +1794,11 @@ HELPTEXT;
 			// define upgrade
 			$upgrade .= '
 			<tr valign="top">
-				<th scope="row"><label for="cp_sidebar_default">'.$label.'</label></th>
+				<th scope="row"><label for="cp_sidebar_default">' . $label . '</label></th>
 				<td><select id="cp_sidebar_default" name="cp_sidebar_default">
-						<option value="toc">'.$contents_label.'</option>
-						<option value="activity">'.$activity_label.'</option>
-						<option value="comments" selected="selected">'.$comments_label.'</option>
+						<option value="toc">' . $contents_label . '</option>
+						<option value="activity">' . $activity_label . '</option>
+						<option value="comments" selected="selected">' . $comments_label . '</option>
 					</select>
 				</td>
 			</tr>
@@ -1796,7 +1808,7 @@ HELPTEXT;
 		}
 
 		// do we have the option to show or hide page meta (new in 3.3.2)?
-		if ( !$this->db->option_exists( 'cp_page_meta_visibility' ) ) {
+		if ( ! $this->db->option_exists( 'cp_page_meta_visibility' ) ) {
 
 			$meta_label = __( 'Show or hide page meta by default', 'commentpress-core' );
 			$meta_show_label = __( 'Show page meta', 'commentpress-core' );
@@ -1805,10 +1817,10 @@ HELPTEXT;
 			// define upgrade
 			$upgrade .= '
 			<tr valign="top">
-				<th scope="row"><label for="cp_page_meta_visibility">'.$meta_label.'</label></th>
+				<th scope="row"><label for="cp_page_meta_visibility">' . $meta_label . '</label></th>
 				<td><select id="cp_page_meta_visibility" name="cp_page_meta_visibility">
-						<option value="show">'.$meta_show_label.'</option>
-						<option value="hide" selected="selected">'.$meta_hide_label.'</option>
+						<option value="show">' . $meta_show_label . '</option>
+						<option value="hide" selected="selected">' . $meta_hide_label . '</option>
 					</select>
 				</td>
 			</tr>
@@ -1817,7 +1829,7 @@ HELPTEXT;
 		}
 
 		// do we have the option to choose blog type (new in 3.3.1)?
-		if ( !$this->db->option_exists( 'cp_blog_type' ) ) {
+		if ( ! $this->db->option_exists( 'cp_blog_type' ) ) {
 
 			// define no types
 			$types = array();
@@ -1826,7 +1838,7 @@ HELPTEXT;
 			$types = apply_filters( 'cp_blog_type_options', $types );
 
 			// if we get some from a plugin, say...
-			if ( !empty( $types ) ) {
+			if ( ! empty( $types ) ) {
 
 				// define title
 				$type_title = __( 'Blog Type', 'commentpress-core' );
@@ -1838,7 +1850,7 @@ HELPTEXT;
 				$type_option_list = array();
 				$n = 0;
 				foreach( $types AS $type ) {
-					$type_option_list[] = '<option value="'.$n.'">'.$type.'</option>';
+					$type_option_list[] = '<option value="' . $n . '">' . $type . '</option>';
 					$n++;
 				}
 				$type_options = implode( "\n", $type_option_list );
@@ -1848,9 +1860,9 @@ HELPTEXT;
 				// define upgrade
 				$upgrade .= '
 				<tr valign="top">
-					<th scope="row"><label for="cp_blog_type">'.$type_title.'</label></th>
+					<th scope="row"><label for="cp_blog_type">' . $type_title . '</label></th>
 					<td><select id="cp_blog_type" name="cp_blog_type">
-							'.$type_options.'
+							' . $type_options . '
 						</select>
 					</td>
 				</tr>
@@ -1862,7 +1874,7 @@ HELPTEXT;
 		}
 
 		// do we have the option to choose blog workflow (new in 3.3.1)?
-		if ( !$this->db->option_exists( 'cp_blog_workflow' ) ) {
+		if ( ! $this->db->option_exists( 'cp_blog_workflow' ) ) {
 
 			// off by default
 			$has_workflow = false;
@@ -1882,7 +1894,7 @@ HELPTEXT;
 				// define upgrade
 				$upgrade .= '
 				<tr valign="top">
-					<th scope="row"><label for="cp_blog_workflow">'.$workflow_label.'</label></th>
+					<th scope="row"><label for="cp_blog_workflow">' . $workflow_label . '</label></th>
 					<td><input id="cp_blog_workflow" name="cp_blog_workflow" value="1" type="checkbox" /></td>
 				</tr>
 
@@ -1893,7 +1905,7 @@ HELPTEXT;
 		}
 
 		// do we have the option to choose the TOC layout (new in 3.3)?
-		if ( !$this->db->option_exists( 'cp_show_extended_toc' ) ) {
+		if ( ! $this->db->option_exists( 'cp_show_extended_toc' ) ) {
 
 			$extended_label = __( 'Appearance of TOC for posts', 'commentpress-core' );
 			$extended_info_label = __( 'Extended information', 'commentpress-core' );
@@ -1902,10 +1914,10 @@ HELPTEXT;
 			// define upgrade
 			$upgrade .= '
 			<tr valign="top">
-				<th scope="row"><label for="cp_show_extended_toc">'.$extended_label.'</label></th>
+				<th scope="row"><label for="cp_show_extended_toc">' . $extended_label . '</label></th>
 				<td><select id="cp_show_extended_toc" name="cp_show_extended_toc">
-						<option value="1">'.$extended_info_label.'</option>
-						<option value="0" selected="selected">'.$extended_title_label.'</option>
+						<option value="1">' . $extended_info_label . '</option>
+						<option value="0" selected="selected">' . $extended_title_label . '</option>
 					</select>
 				</td>
 			</tr>
@@ -1915,7 +1927,7 @@ HELPTEXT;
 		}
 
 		// do we have the option to set the comment editor?
-		if ( !$this->db->option_exists( 'cp_comment_editor' ) ) {
+		if ( ! $this->db->option_exists( 'cp_comment_editor' ) ) {
 
 			$editor_label = __( 'Comment form editor', 'commentpress-core' );
 			$rich_label = __( 'Rich-text Editor', 'commentpress-core' );
@@ -1924,10 +1936,10 @@ HELPTEXT;
 			// define upgrade
 			$upgrade .= '
 			<tr valign="top">
-				<th scope="row"><label for="cp_comment_editor">'.$editor_label.'</label></th>
+				<th scope="row"><label for="cp_comment_editor">' . $editor_label . '</label></th>
 				<td><select id="cp_comment_editor" name="cp_comment_editor">
-						<option value="1" selected="selected">'.$rich_label.'</option>
-						<option value="0">'.$plain_label.'</option>
+						<option value="1" selected="selected">' . $rich_label . '</option>
+						<option value="0">' . $plain_label . '</option>
 					</select>
 				</td>
 			</tr>
@@ -1936,7 +1948,7 @@ HELPTEXT;
 		}
 
 		// do we have the option to set the default behaviour?
-		if ( !$this->db->option_exists( 'cp_promote_reading' ) ) {
+		if ( ! $this->db->option_exists( 'cp_promote_reading' ) ) {
 
 			$behaviour_label = __( 'Default comment form behaviour', 'commentpress-core' );
 			$reading_label = __( 'Promote reading', 'commentpress-core' );
@@ -1945,10 +1957,10 @@ HELPTEXT;
 			// define upgrade
 			$upgrade .= '
 			<tr valign="top">
-				<th scope="row"><label for="cp_promote_reading">'.$behaviour_label.'</label></th>
+				<th scope="row"><label for="cp_promote_reading">' . $behaviour_label . '</label></th>
 				<td><select id="cp_promote_reading" name="cp_promote_reading">
-						<option value="1">'.$reading_label.'</option>
-						<option value="0" selected="selected">'.$commenting_label.'</option>
+						<option value="1">' . $reading_label . '</option>
+						<option value="0" selected="selected">' . $commenting_label . '</option>
 					</select>
 				</td>
 			</tr>
@@ -1957,7 +1969,7 @@ HELPTEXT;
 		}
 
 		// do we have the option to show or hide titles?
-		if ( !$this->db->option_exists( 'cp_title_visibility' ) ) {
+		if ( ! $this->db->option_exists( 'cp_title_visibility' ) ) {
 
 			// define labels
 			$titles_label = __( 'Show or hide page titles by default', 'commentpress-core' );
@@ -1967,10 +1979,10 @@ HELPTEXT;
 			// define upgrade
 			$upgrade .= '
 			<tr valign="top">
-				<th scope="row"><label for="cp_title_visibility">'.$titles_label.'</label></th>
+				<th scope="row"><label for="cp_title_visibility">' . $titles_label . '</label></th>
 				<td><select id="cp_title_visibility" name="cp_title_visibility">
-						<option value="show" selected="selected">'.$titles_select_show.'</option>
-						<option value="hide">'.$titles_select_hide.'</option>
+						<option value="show" selected="selected">' . $titles_select_show . '</option>
+						<option value="hide">' . $titles_select_hide . '</option>
 					</select>
 				</td>
 			</tr>
@@ -1979,7 +1991,7 @@ HELPTEXT;
 		}
 
 		// do we have the option to set the header bg colour?
-		if ( !$this->db->option_exists( 'cp_header_bg_colour' ) ) {
+		if ( ! $this->db->option_exists( 'cp_header_bg_colour' ) ) {
 
 			// define labels
 			$colour_label = __( 'Header Background Colour', 'commentpress-core' );
@@ -1989,8 +2001,8 @@ HELPTEXT;
 			// define upgrade
 			$upgrade .= '
 			<tr valign="top" id="cp_header_bg_colour-row">
-				<th scope="row"><label for="cp_header_bg_colour">'.$colour_label.'</label></th>
-				<td><input type="text" name="cp_header_bg_colour" id="cp_header_bg_colour" value="'.$this->db->header_bg_colour.'" /><span class="description hide-if-js">'.$colour_select_text.'</span><input type="button" class="button hide-if-no-js" value="'.$colour_select_label.'" id="pickcolor" /><div id="color-picker" style="z-index: 100; background:#eee; border:1px solid #ccc; position:absolute; display:none;"></div></td>
+				<th scope="row"><label for="cp_header_bg_colour">' . $colour_label . '</label></th>
+				<td><input type="text" name="cp_header_bg_colour" id="cp_header_bg_colour" value="' . $this->db->header_bg_colour . '" /><span class="description hide-if-js">' . $colour_select_text . '</span><input type="button" class="button hide-if-no-js" value="' . $colour_select_label . '" id="pickcolor" /><div id="color-picker" style="z-index: 100; background:#eee; border:1px solid #ccc; position:absolute; display:none;"></div></td>
 			</tr>
 
 			';
@@ -1998,7 +2010,7 @@ HELPTEXT;
 		}
 
 		// do we have the option to set the scroll speed?
-		if ( !$this->db->option_exists( 'cp_js_scroll_speed' ) ) {
+		if ( ! $this->db->option_exists( 'cp_js_scroll_speed' ) ) {
 
 			// define labels
 			$scroll_label = __( 'Scroll speed', 'commentpress-core' );
@@ -2007,8 +2019,8 @@ HELPTEXT;
 			// define upgrade
 			$upgrade .= '
 			<tr valign="top">
-				<th scope="row"><label for="cp_js_scroll_speed">'.$scroll_label.'</label></th>
-				<td><input type="text" id="cp_js_scroll_speed" name="cp_js_scroll_speed" value="'.$this->db->js_scroll_speed.'" class="small-text" /> '.$scroll_ms_label.'</td>
+				<th scope="row"><label for="cp_js_scroll_speed">' . $scroll_label . '</label></th>
+				<td><input type="text" id="cp_js_scroll_speed" name="cp_js_scroll_speed" value="' . $this->db->js_scroll_speed . '" class="small-text" /> ' . $scroll_ms_label . '</td>
 			</tr>
 
 			';
@@ -2016,7 +2028,7 @@ HELPTEXT;
 		}
 
 		// do we have the option to set the minimum page width?
-		if ( !$this->db->option_exists( 'cp_min_page_width' ) ) {
+		if ( ! $this->db->option_exists( 'cp_min_page_width' ) ) {
 
 			// define labels
 			$min_label = __( 'Minimum page width', 'commentpress-core' );
@@ -2026,7 +2038,7 @@ HELPTEXT;
 			$upgrade .= '
 			<tr valign="top">
 				<th scope="row"><label for="cp_min_page_width"></label></th>
-				<td><input type="text" id="cp_min_page_width" name="cp_min_page_width" value="'.$this->db->min_page_width.'" class="small-text" /> '.$min_pix_label.'</td>
+				<td><input type="text" id="cp_min_page_width" name="cp_min_page_width" value="' . $this->db->min_page_width . '" class="small-text" /> ' . $min_pix_label . '</td>
 			</tr>
 
 			';
@@ -2067,7 +2079,7 @@ HELPTEXT;
 		// define reset
 		$reset = '
 		<tr valign="top">
-			<th scope="row"><label for="cp_reset">'.$label.'</label></th>
+			<th scope="row"><label for="cp_reset">' . $label . '</label></th>
 			<td><input id="cp_reset" name="cp_reset" value="1" type="checkbox" /></td>
 		</tr>
 		';
@@ -2098,19 +2110,19 @@ HELPTEXT;
 		// define editor
 		$editor = '
 		<tr valign="top">
-			<th scope="row"><label for="cp_comment_editor">'.$editor_label.'</label></th>
+			<th scope="row"><label for="cp_comment_editor">' . $editor_label . '</label></th>
 			<td><select id="cp_comment_editor" name="cp_comment_editor">
-					<option value="1" '.(($this->db->option_get('cp_comment_editor') == '1') ? ' selected="selected"' : '').'>'.$rich_label.'</option>
-					<option value="0" '.(($this->db->option_get('cp_comment_editor') == '0') ? ' selected="selected"' : '').'>'.$plain_label.'</option>
+					<option value="1" ' . (($this->db->option_get('cp_comment_editor') == '1') ? ' selected="selected"' : '') . '>' . $rich_label . '</option>
+					<option value="0" ' . (($this->db->option_get('cp_comment_editor') == '0') ? ' selected="selected"' : '') . '>' . $plain_label . '</option>
 				</select>
 			</td>
 		</tr>
 
 		<tr valign="top">
-			<th scope="row"><label for="cp_promote_reading">'.$behaviour_label.'</label></th>
+			<th scope="row"><label for="cp_promote_reading">' . $behaviour_label . '</label></th>
 			<td><select id="cp_promote_reading" name="cp_promote_reading">
-					<option value="1" '.(($this->db->option_get('cp_promote_reading') == '1') ? ' selected="selected"' : '').'>'.$reading_label.'</option>
-					<option value="0" '.(($this->db->option_get('cp_promote_reading') == '0') ? ' selected="selected"' : '').'>'.$commenting_label.'</option>
+					<option value="1" ' . (($this->db->option_get('cp_promote_reading') == '1') ? ' selected="selected"' : '') . '>' . $reading_label . '</option>
+					<option value="0" ' . (($this->db->option_get('cp_promote_reading') == '0') ? ' selected="selected"' : '') . '>' . $commenting_label . '</option>
 				</select>
 			</td>
 		</tr>
@@ -2146,36 +2158,36 @@ HELPTEXT;
 		// define table of contents options
 		$toc = '
 		<tr valign="top">
-			<th scope="row"><label for="cp_show_posts_or_pages_in_toc">'.$toc_label.'</label></th>
+			<th scope="row"><label for="cp_show_posts_or_pages_in_toc">' . $toc_label . '</label></th>
 			<td><select id="cp_show_posts_or_pages_in_toc" name="cp_show_posts_or_pages_in_toc">
-					<option value="post" '.(($this->db->option_get('cp_show_posts_or_pages_in_toc') == 'post') ? ' selected="selected"' : '').'>'.$posts_label.'</option>
-					<option value="page" '.(($this->db->option_get('cp_show_posts_or_pages_in_toc') == 'page') ? ' selected="selected"' : '').'>'.$pages_label.'</option>
+					<option value="post" ' . (($this->db->option_get('cp_show_posts_or_pages_in_toc') == 'post') ? ' selected="selected"' : '') . '>' . $posts_label . '</option>
+					<option value="page" ' . (($this->db->option_get('cp_show_posts_or_pages_in_toc') == 'page') ? ' selected="selected"' : '') . '>' . $pages_label . '</option>
 				</select>
 			</td>
 		</tr>
 
-		'.(($this->db->option_get('cp_show_posts_or_pages_in_toc') == 'page') ? '
+		' . (($this->db->option_get('cp_show_posts_or_pages_in_toc') == 'page') ? '
 		<tr valign="top">
-			<th scope="row"><label for="cp_toc_chapter_is_page">'.$chapter_label.'</label></th>
+			<th scope="row"><label for="cp_toc_chapter_is_page">' . $chapter_label . '</label></th>
 			<td><select id="cp_toc_chapter_is_page" name="cp_toc_chapter_is_page">
-					<option value="1" '.(($this->db->option_get('cp_toc_chapter_is_page') == '1') ? ' selected="selected"' : '').'>'.$chapter_pages_label.'</option>
-					<option value="0" '.(($this->db->option_get('cp_toc_chapter_is_page') == '0') ? ' selected="selected"' : '').'>'.$chapter_headings_label.'</option>
+					<option value="1" ' . (($this->db->option_get('cp_toc_chapter_is_page') == '1') ? ' selected="selected"' : '') . '>' . $chapter_pages_label . '</option>
+					<option value="0" ' . (($this->db->option_get('cp_toc_chapter_is_page') == '0') ? ' selected="selected"' : '') . '>' . $chapter_headings_label . '</option>
 				</select>
 			</td>
-		</tr>' : '' ).'
+		</tr>' : '' ) . '
 
-		'.(($this->db->option_get('cp_show_posts_or_pages_in_toc') == 'page' AND $this->db->option_get('cp_toc_chapter_is_page') == '0') ? '
+		' . (($this->db->option_get('cp_show_posts_or_pages_in_toc') == 'page' AND $this->db->option_get('cp_toc_chapter_is_page') == '0') ? '
 		<tr valign="top">
 			<th scope="row"><label for="cp_show_subpages">Show Sub-Pages</label></th>
-			<td><input id="cp_show_subpages" name="cp_show_subpages" value="1"  type="checkbox" '.( $this->db->option_get('cp_show_subpages') ? ' checked="checked"' : ''  ).' /></td>
-		</tr>' : '' ).'
+			<td><input id="cp_show_subpages" name="cp_show_subpages" value="1"  type="checkbox" ' . ( $this->db->option_get('cp_show_subpages') ? ' checked="checked"' : ''  ) . ' /></td>
+		</tr>' : '' ) . '
 
 
 		<tr valign="top">
-			<th scope="row"><label for="cp_show_extended_toc">'.$extended_label.'</label></th>
+			<th scope="row"><label for="cp_show_extended_toc">' . $extended_label . '</label></th>
 			<td><select id="cp_show_extended_toc" name="cp_show_extended_toc">
-					<option value="1" '.(($this->db->option_get('cp_show_extended_toc') == '1') ? ' selected="selected"' : '').'>'.$extended_info_label.'</option>
-					<option value="0" '.(($this->db->option_get('cp_show_extended_toc') == '0') ? ' selected="selected"' : '').'>'.$extended_title_label.'</option>
+					<option value="1" ' . (($this->db->option_get('cp_show_extended_toc') == '1') ? ' selected="selected"' : '') . '>' . $extended_info_label . '</option>
+					<option value="0" ' . (($this->db->option_get('cp_show_extended_toc') == '0') ? ' selected="selected"' : '') . '>' . $extended_title_label . '</option>
 				</select>
 			</td>
 		</tr>
@@ -2195,6 +2207,9 @@ HELPTEXT;
 	 */
 	function _get_sidebar() {
 
+		// allow this to be disabled
+		if ( apply_filters( 'commentpress_hide_sidebar_option', false ) ) return;
+
 		// define labels
 		$label = __( 'Which sidebar do you want to be active by default? (can be overridden on individual pages)', 'commentpress-core' );
 		$contents_label = __( 'Contents', 'commentpress-core' );
@@ -2207,11 +2222,11 @@ HELPTEXT;
 		// define table of contents options
 		$toc = '
 		<tr valign="top">
-			<th scope="row"><label for="cp_sidebar_default">'.$label.'</label></th>
+			<th scope="row"><label for="cp_sidebar_default">' . $label . '</label></th>
 			<td><select id="cp_sidebar_default" name="cp_sidebar_default">
-					<option value="toc" '.(($default == 'contents') ? ' selected="selected"' : '').'>'.$contents_label.'</option>
-					<option value="activity" '.(($default == 'activity') ? ' selected="selected"' : '').'>'.$activity_label.'</option>
-					<option value="comments" '.(($default == 'comments') ? ' selected="selected"' : '').'>'.$comments_label.'</option>
+					<option value="toc" ' . (($default == 'contents') ? ' selected="selected"' : '') . '>' . $contents_label . '</option>
+					<option value="activity" ' . (($default == 'activity') ? ' selected="selected"' : '') . '>' . $activity_label . '</option>
+					<option value="comments" ' . (($default == 'comments') ? ' selected="selected"' : '') . '>' . $comments_label . '</option>
 				</select>
 			</td>
 		</tr>
@@ -2238,8 +2253,8 @@ HELPTEXT;
 		// define override
 		$override = '
 		<tr valign="top">
-			<th scope="row"><label for="cp_para_comments_live">'.$label.'</label></th>
-			<td><input id="cp_para_comments_live" name="cp_para_comments_live" value="1" type="checkbox" '.( ($this->db->option_get('cp_para_comments_live') == '1') ? ' checked="checked"' : ''  ).' /></td>
+			<th scope="row"><label for="cp_para_comments_live">' . $label . '</label></th>
+			<td><input id="cp_para_comments_live" name="cp_para_comments_live" value="1" type="checkbox" ' . ( ($this->db->option_get('cp_para_comments_live') == '1') ? ' checked="checked"' : ''  ) . ' /></td>
 		</tr>
 		';
 
@@ -2260,10 +2275,10 @@ HELPTEXT;
 		// define override
 		$override = '
 		<tr valign="top">
-			<th scope="row"><label for="cp_textblock_meta">'.__( 'Show paragraph meta (Number and Comment Icon)', 'commentpress-core' ).'</label></th>
+			<th scope="row"><label for="cp_textblock_meta">' . __( 'Show paragraph meta (Number and Comment Icon)', 'commentpress-core' ) . '</label></th>
 			<td><select id="cp_textblock_meta" name="cp_textblock_meta">
-					<option value="y" '.(($this->db->option_get('cp_textblock_meta', 'y') == 'y') ? ' selected="selected"' : '').'>'.__( 'Always', 'commentpress-core' ).'</option>
-					<option value="n" '.(($this->db->option_get('cp_textblock_meta', 'y') == 'n') ? ' selected="selected"' : '').'>'.__( 'On rollover', 'commentpress-core' ).'</option>
+					<option value="y" ' . (($this->db->option_get('cp_textblock_meta', 'y') == 'y') ? ' selected="selected"' : '') . '>' . __( 'Always', 'commentpress-core' ) . '</option>
+					<option value="n" ' . (($this->db->option_get('cp_textblock_meta', 'y') == 'n') ? ' selected="selected"' : '') . '>' . __( 'On rollover', 'commentpress-core' ) . '</option>
 				</select>
 			</td>
 		</tr>
@@ -2290,7 +2305,7 @@ HELPTEXT;
 		// define editor
 		$submit = '
 		<p class="submit">
-			<input type="submit" name="commentpress_submit" value="'.$label.'" class="button-primary" />
+			<input type="submit" name="commentpress_submit" value="' . $label . '" class="button-primary" />
 		</p>
 		';
 
@@ -2314,7 +2329,7 @@ HELPTEXT;
 		//<![CDATA[
 			var text_objects = ["#cp_header_bg_colour-row"];
 			var farbtastic;
-			var default_color = "#'.$this->db->option_get_header_bg().'";
+			var default_color = "#' . $this->db->option_get_header_bg() . '";
 			var old_color = null;
 
 			function pickColor(color) {
@@ -2383,10 +2398,10 @@ HELPTEXT;
 				// test for picker
 				if ( jQuery("#cp_header_bg_colour").length > 0 ) {
 					farbtastic = jQuery.farbtastic("#color-picker", function(color) { pickColor(color); });
-					pickColor("#'.$this->db->option_get_header_bg().'");
+					pickColor("#' . $this->db->option_get_header_bg() . '");
 				}
 
-				'.( ( 'blank' == $this->db->option_get_header_bg() OR '' == $this->db->option_get_header_bg() ) ? 'toggle_text();' : '' ).'
+				' . ( ( 'blank' == $this->db->option_get_header_bg() OR '' == $this->db->option_get_header_bg() ) ? 'toggle_text();' : '' ) . '
 				});
 
 		//]]>
@@ -2406,14 +2421,14 @@ HELPTEXT;
 	function _get_tinymce_init() {
 
 		// base url
-		//$_base = trailingslashit( get_bloginfo('wpurl') ).'wp-includes/js/tinymce';
+		//$_base = trailingslashit( get_bloginfo('wpurl') ) . 'wp-includes/js/tinymce';
 		$_base = includes_url('js/tinymce');
 
 		// locale
 		$mce_locale = ( '' == get_locale() ) ? 'en' : strtolower( substr(get_locale(), 0, 2) ); // only ISO 639-1
 
 		// content css
-		$_content_css = ''; //trailingslashit( get_bloginfo('wpurl') ).'wp-includes/js/tinymce/wordpress.css';
+		$_content_css = ''; //trailingslashit( get_bloginfo('wpurl') ) . 'wp-includes/js/tinymce/wordpress.css';
 
 		// define tinyMCE javascript
 		$js = '
@@ -2442,7 +2457,7 @@ HELPTEXT;
 		 */
 		tinyMCEPreInit = {
 
-			base : "'.$_base.'",
+			base : "' . $_base . '",
 
 			suffix : "",
 
@@ -2509,7 +2524,7 @@ HELPTEXT;
 
 
 		//]]>
-		</script>'."\n\n\n\n";
+		</script>' . "\n\n\n\n";
 
 		// --<
 		return $js;
@@ -2642,7 +2657,7 @@ HELPTEXT;
 				$val = $v ? 'true' : 'false';
 				$mce_options .= $k . ':' . $val . ', ';
 				continue;
-			} elseif ( !empty($v) && is_string($v) && ( ('{' == $v{0} && '}' == $v{strlen($v) - 1}) || ('[' == $v{0} && ']' == $v{strlen($v) - 1}) || preg_match('/^\(?function ?\(/', $v) ) ) {
+			} elseif ( ! empty($v) && is_string($v) && ( ('{' == $v{0} && '}' == $v{strlen($v) - 1}) || ('[' == $v{0} && ']' == $v{strlen($v) - 1}) || preg_match('/^\(?function ?\(/', $v) ) ) {
 				$mce_options .= $k . ':' . $v . ', ';
 				continue;
 			}

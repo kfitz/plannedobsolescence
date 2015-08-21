@@ -3,6 +3,9 @@ Other than in many themes you may already know, in Chunk the main navigation men
 
 == Changelog ==
 
+= 1.3.1 - June 19 2015 =
+* Escaped all necessary inputs, URLs, etc.
+
 = 1.3 - November 27, 2014 =
 * Add support for the Eventbrite API plugin.
 * Add previous/next navigation to single posts.
