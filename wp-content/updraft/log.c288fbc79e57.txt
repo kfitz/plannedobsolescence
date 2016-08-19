@@ -1,0 +1,442 @@
+0000.015 (0) Opened log file at time: Sat, 13 Aug 2016 18:37:20 +0000 on http://www.plannedobsolescence.net
+0000.017 (0) UpdraftPlus WordPress backup plugin (https://updraftplus.com): 1.12.17 WP: 4.5.3 PHP: 5.6.24 (Linux dayton 3.2.61-grsec-modsign #1 SMP Tue Aug 12 09:58:26 UTC 2014 x86_64) MySQL: 5.6.25 WPLANG: en_US Server: Apache safe_mode: 0 max_execution_time: 900 memory_limit: 256M (used: 30.4M | 31M) multisite: N openssl: OpenSSL 1.0.1 14 Mar 2012 mcrypt: Y LANG:  ZipArchive::addFile: Y
+0000.018 (0) Free space on disk containing Updraft's temporary directory: 751118.1 MB
+0000.041 (0) Deleting old temporary file: d1b6e4fd17fc9df5c74f12b6770b4248.tmp
+0000.043 (0) Tasks: Backup files: 1 (schedule: weekly) Backup DB:  (schedule: weekly)
+0000.044 (0) Processed schedules. Combining jobs from identical schedules. Tasks now: Backup files: 1 Backup DB: 1
+0000.159 (0) Requesting semaphore lock (fd) (apparently via scheduler: last_scheduled_action_called_at=1470508612, seconds_ago=604828)
+0000.161 (0) Semaphore (fd) was stuck, set lock time to 2016-08-13 18:37:20
+0000.163 (0) Semaphore (fd) reset to 1
+0000.164 (0) Set semaphore last lock (fd) time to 2016-08-13 18:37:20
+0000.165 (0) Semaphore lock (fd) complete
+0000.169 (0) Backup run: resumption=0, nonce=c288fbc79e57, begun at=1471113440 (0s ago), job type=backup
+0000.171 (0) Scheduling a resumption (1) after 300 seconds (1471113740) in case this run gets aborted
+0000.197 (0) Checking if we have a zip executable available
+0000.198 (0) Testing: /usr/bin/zip
+0000.208 (0) Output: zip warning: binziptest/test.zip not found or empty
+0000.210 (0) Output: adding: binziptest/subdir1/	(in=0) (out=0) (stored 0%)
+0000.211 (0) Output: adding: binziptest/subdir1/subdir2/	(in=0) (out=0) (stored 0%)
+0000.212 (0) Output: adding: binziptest/subdir1/subdir2/test.html	(in=131) (out=107) (deflated 18%)
+0000.213 (0) Output: total bytes=131, compressed=107 -> 18% savings
+0000.223 (0) Output: adding: binziptest/subdir1/subdir2/test2.html	(in=138) (out=113) (deflated 18%)
+0000.225 (0) Output: total bytes=269, compressed=220 -> 18% savings
+0313.263 (1) Opened log file at time: Sat, 13 Aug 2016 18:42:33 +0000 on http://www.plannedobsolescence.net
+0313.264 (1) UpdraftPlus WordPress backup plugin (https://updraftplus.com): 1.12.17 WP: 4.5.3 PHP: 5.6.24 (Linux dayton 3.2.61-grsec-modsign #1 SMP Tue Aug 12 09:58:26 UTC 2014 x86_64) MySQL: 5.6.25 WPLANG: en_US Server: Apache safe_mode: 0 max_execution_time: 900 memory_limit: 256M (used: 30.6M | 31.5M) multisite: N openssl: OpenSSL 1.0.1 14 Mar 2012 mcrypt: Y LANG:  ZipArchive::addFile: Y
+0313.265 (1) Free space on disk containing Updraft's temporary directory: 751104.3 MB
+0313.267 (1) Backup run: resumption=1, nonce=c288fbc79e57, begun at=1471113440 (313s ago), job type=backup
+0313.269 (1) Scheduling a resumption (2) after 300 seconds (1471114053) in case this run gets aborted
+0313.281 (1) Checking if we have a zip executable available
+0313.282 (1) Testing: /usr/bin/zip
+0313.291 (1) Output: zip warning: binziptest/test.zip not found or empty
+0313.293 (1) Output: adding: binziptest/subdir1/	(in=0) (out=0) (stored 0%)
+0313.294 (1) Output: adding: binziptest/subdir1/subdir2/	(in=0) (out=0) (stored 0%)
+0313.295 (1) Output: adding: binziptest/subdir1/subdir2/test.html	(in=131) (out=107) (deflated 18%)
+0313.296 (1) Output: adding: binziptest/subdir1/subdir2/test2.html	(in=138) (out=113) (deflated 18%)
+0313.297 (1) Output: total bytes=269, compressed=220 -> 18% savings
+0313.309 (1) Output: updating: binziptest/subdir1/subdir2/test2.html	(in=138) (out=113) (deflated 18%)
+0313.311 (1) Output: total bytes=269, compressed=220 -> 18% savings
+0313.341 (1) Working binary zip found: /usr/bin/zip
+0313.343 (1) Zip engine: found/will use a binary zip: /usr/bin/zip
+0313.344 (1) Creation of backups of directories: had begun; will resume
+0313.347 (1) Beginning creation of dump of plugins (split every: 400 MB)
+0317.060 (1) Total entities for the zip file: 388 directories, 2665 files (0 skipped as non-modified), 36.6 MB
+0317.062 (1) Adding batch to zip file (UpdraftPlus_BinZip): over 2.0 seconds have passed since the last write (0 MB, 1 (1) files added so far); re-opening (prior size: 0 KB)
+0317.102 (1) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip.tmp: size is now: 0.10 MB
+0317.110 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip.tmp: 100 files added (on-disk size: 93.2 KB)
+0317.116 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip.tmp: 200 files added (on-disk size: 93.2 KB)
+0317.121 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip.tmp: 300 files added (on-disk size: 93.2 KB)
+0317.127 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip.tmp: 400 files added (on-disk size: 93.2 KB)
+0317.132 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip.tmp: 500 files added (on-disk size: 93.2 KB)
+0317.133 (1) Adding batch to zip file (UpdraftPlus_BinZip): over 500 files added on this batch (8.1 MB, 2665 files batched, 501 (502) added so far); re-opening (prior size: 93.2 KB)
+0320.969 (1) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip.tmp: size is now: 4.10 MB
+0320.979 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip.tmp: 600 files added (on-disk size: 4234.5 KB)
+0320.985 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip.tmp: 700 files added (on-disk size: 4234.5 KB)
+0320.990 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip.tmp: 800 files added (on-disk size: 4234.5 KB)
+0320.996 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip.tmp: 900 files added (on-disk size: 4234.5 KB)
+0321.002 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip.tmp: 1000 files added (on-disk size: 4234.5 KB)
+0321.003 (1) Adding batch to zip file (UpdraftPlus_BinZip): over 500 files added on this batch (4.4 MB, 2665 files batched, 501 (1003) added so far); re-opening (prior size: 4234.5 KB)
+0325.517 (1) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip.tmp: size is now: 5.90 MB
+0325.527 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip.tmp: 1100 files added (on-disk size: 5993.1 KB)
+0325.532 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip.tmp: 1200 files added (on-disk size: 5993.1 KB)
+0325.538 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip.tmp: 1300 files added (on-disk size: 5993.1 KB)
+0325.544 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip.tmp: 1400 files added (on-disk size: 5993.1 KB)
+0325.550 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip.tmp: 1500 files added (on-disk size: 5993.1 KB)
+0325.551 (1) Adding batch to zip file (UpdraftPlus_BinZip): over 500 files added on this batch (15.2 MB, 2665 files batched, 501 (1504) added so far); re-opening (prior size: 5993.1 KB)
+0330.548 (1) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip.tmp: size is now: 10.40 MB
+0330.557 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip.tmp: 1600 files added (on-disk size: 10616.4 KB)
+0330.563 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip.tmp: 1700 files added (on-disk size: 10616.4 KB)
+0330.569 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip.tmp: 1800 files added (on-disk size: 10616.4 KB)
+0330.574 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip.tmp: 1900 files added (on-disk size: 10616.4 KB)
+0330.580 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip.tmp: 2000 files added (on-disk size: 10616.4 KB)
+0330.582 (1) Adding batch to zip file (UpdraftPlus_BinZip): over 500 files added on this batch (2.1 MB, 2665 files batched, 501 (2005) added so far); re-opening (prior size: 10616.4 KB)
+0333.793 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip.tmp: 2100 files added (on-disk size: 11341.5 KB)
+0333.799 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip.tmp: 2200 files added (on-disk size: 11341.5 KB)
+0333.805 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip.tmp: 2300 files added (on-disk size: 11341.5 KB)
+0333.810 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip.tmp: 2400 files added (on-disk size: 11341.5 KB)
+0333.816 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip.tmp: 2500 files added (on-disk size: 11341.5 KB)
+0333.817 (1) Adding batch to zip file (UpdraftPlus_BinZip): over 500 files added on this batch (1.8 MB, 2665 files batched, 501 (2506) added so far); re-opening (prior size: 11341.5 KB)
+0336.174 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip.tmp: 2600 files added (on-disk size: 12367.3 KB)
+0337.664 (1) Created plugins zip (0) - 14503.6 KB in 24.3 s (596.5 KB/s) (SHA1 checksum: 1ca1d8bf84d85db25d1aa27edf9929b1df6cf078)
+0337.667 (1) Beginning creation of dump of themes (split every: 400 MB)
+0338.501 (1) Total entities for the zip file: 119 directories, 815 files (0 skipped as non-modified), 10.3 MB
+0338.508 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-themes.zip.tmp: 100 files added (on-disk size: 0 KB)
+0338.513 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-themes.zip.tmp: 200 files added (on-disk size: 0 KB)
+0338.519 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-themes.zip.tmp: 300 files added (on-disk size: 0 KB)
+0338.524 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-themes.zip.tmp: 400 files added (on-disk size: 0 KB)
+0338.530 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-themes.zip.tmp: 500 files added (on-disk size: 0 KB)
+0338.534 (1) Adding batch to zip file (UpdraftPlus_BinZip): over 500 files added on this batch (6.1 MB, 815 files batched, 501 (501) added so far); re-opening (prior size: 0 KB)
+0342.038 (1) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-themes.zip.tmp: size is now: 4.60 MB
+0342.048 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-themes.zip.tmp: 600 files added (on-disk size: 4756.6 KB)
+0342.054 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-themes.zip.tmp: 700 files added (on-disk size: 4756.6 KB)
+0342.060 (1) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-themes.zip.tmp: 800 files added (on-disk size: 4756.6 KB)
+0615.179 (2) Opened log file at time: Sat, 13 Aug 2016 18:47:35 +0000 on http://www.plannedobsolescence.net
+0615.180 (2) UpdraftPlus WordPress backup plugin (https://updraftplus.com): 1.12.17 WP: 4.5.3 PHP: 5.6.24 (Linux dayton 3.2.61-grsec-modsign #1 SMP Tue Aug 12 09:58:26 UTC 2014 x86_64) MySQL: 5.6.25 WPLANG: en_US Server: Apache safe_mode: 0 max_execution_time: 900 memory_limit: 256M (used: 30.5M | 31M) multisite: N openssl: OpenSSL 1.0.1 14 Mar 2012 mcrypt: Y LANG:  ZipArchive::addFile: Y
+0615.181 (2) Free space on disk containing Updraft's temporary directory: 751059.8 MB
+0615.183 (2) Backup run: resumption=2, nonce=c288fbc79e57, begun at=1471113440 (615s ago), job type=backup, previous check-in=28.8s
+0615.185 (2) Scheduling a resumption (3) after 300 seconds (1471114355) in case this run gets aborted
+0615.198 (2) Checking if we have a zip executable available
+0615.200 (2) Zip engine: found/will use a binary zip: /usr/bin/zip
+0615.201 (2) Creation of backups of directories: had begun; will resume
+0615.205 (2) Beginning creation of dump of plugins (split every: 400 MB)
+0615.206 (2) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip: this file has already been created (age: 277 s)
+0615.209 (2) Beginning creation of dump of themes (split every: 400 MB)
+0615.210 (2) File exists (/home/plannedo/plannedobsolescence.net/wp-content/updraft/backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-themes.zip.tmp), but was apparently not modified within the last 30 seconds, so we assume that any previous run has now terminated (time_mod=1471113785, time_now=1471114055, diff=270)
+0615.266 (2) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-themes.zip.tmp: Zip file already exists, with 815 files
+0615.297 (2) Total entities for the zip file: 119 directories, 815 files (0 skipped as non-modified), 10.3 MB
+0615.301 (2) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-themes.zip.tmp: 100 files added (on-disk size: 8006.1 KB)
+0615.304 (2) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-themes.zip.tmp: 200 files added (on-disk size: 8006.1 KB)
+0615.308 (2) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-themes.zip.tmp: 300 files added (on-disk size: 8006.1 KB)
+0615.311 (2) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-themes.zip.tmp: 400 files added (on-disk size: 8006.1 KB)
+0615.315 (2) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-themes.zip.tmp: 500 files added (on-disk size: 8006.1 KB)
+0615.318 (2) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-themes.zip.tmp: 600 files added (on-disk size: 8006.1 KB)
+0615.322 (2) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-themes.zip.tmp: 700 files added (on-disk size: 8006.1 KB)
+0615.326 (2) Zip: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-themes.zip.tmp: 800 files added (on-disk size: 8006.1 KB)
+0615.418 (2) Created themes zip (0) - 8006.1 KB in 0.2 s (38788.1 KB/s) (SHA1 checksum: a7a4e0225255e335937202ad9e2cd73a1794db01)
+0615.422 (2) Exclusion option setting (uploads): backup*,*backups,backwpup*,wp-clone
+0615.423 (2) Looking for candidates to back up in: /home/plannedo/plannedobsolescence.net/wp-content/uploads
+0615.424 (2) finding files: 2007: adding to list (1)
+0615.425 (2) finding files: 2011: adding to list (2)
+0615.426 (2) finding files: 2012: adding to list (3)
+0615.428 (2) finding files: 2013: adding to list (4)
+0615.429 (2) finding files: 2014: adding to list (5)
+0615.429 (2) finding files: 2015: adding to list (6)
+0615.430 (2) finding files: 2016: adding to list (7)
+0615.431 (2) finding files: profiles: adding to list (8)
+0615.434 (2) Beginning creation of dump of uploads (split every: 400 MB)
+0615.569 (2) Total entities for the zip file: 68 directories, 50 files (0 skipped as non-modified), 8.1 MB
+0616.215 (2) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-uploads.zip.tmp: size is now: 8.10 MB
+0616.264 (2) Created uploads zip (0) - 8311.3 KB in 0.8 s (10048.6 KB/s) (SHA1 checksum: 6f805664f38b04770d08d51d80330a47b8e582fd)
+0616.267 (2) Beginning backup of other directories found in the content directory (index: 0)
+0616.268 (2) Exclusion option setting (others): upgrade,cache,updraft,backup*,*backups,mysql.sql,debug.log
+0616.270 (2) Looking for candidates to back up in: /home/plannedo/plannedobsolescence.net/wp-content
+0616.271 (2) finding files: advanced-cache.php: adding to list (1)
+0616.272 (2) finding files: wp-cache-config.php: adding to list (2)
+0616.272 (2) finding files: backup-f8ae4: skipping: excluded by options (glob)
+0616.273 (2) finding files: blogs.dir: adding to list (3)
+0616.274 (2) finding files: cache: skipping: excluded by options
+0616.275 (2) finding files: mu-plugins: adding to list (4)
+0616.276 (2) finding files: plugins: skipping: this is the plugins directory
+0616.277 (2) finding files: themes: skipping: this is the themes directory
+0616.278 (2) finding files: upgrade: skipping: excluded by options
+0616.279 (2) finding files: uploads: skipping: this is the uploads directory
+0616.279 (2) finding files: wflogs: adding to list (5)
+0616.280 (2) finding files: index.php: adding to list (6)
+0616.281 (2) finding files: backups: skipping: excluded by options (glob)
+0616.284 (2) finding files: backups: skipping: excluded by options (glob)
+0616.284 (2) finding files: updraft: skipping: this is the updraft directory
+0616.355 (2) Total entities for the zip file: 51 directories, 20 files (0 skipped as non-modified), 0.1 MB
+0616.469 (2) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-others.zip.tmp: size is now: 0.00 MB
+0616.475 (2) Created others zip (0) - 44.5 KB in 0.2 s (235.8 KB/s) (SHA1 checksum: 87e5a4c34a8b837e68bc69486d33ccd2d67cb5a9)
+0616.482 (2) Saving backup status to database (elements: 8)
+0616.485 (2) Resuming creation of database dump (WordPress DB)
+0616.488 (2) Testing: /usr/bin/mysqldump
+0616.509 (2) Working binary mysqldump found: /usr/bin/mysqldump
+0616.524 (2) Table wp_i28wtk_options: Total expected rows (approximate): 1133
+0616.668 (2) Table wp_i28wtk_options: Total rows added: 1129 in 0.14 seconds
+0616.671 (2) Table wp_i28wtk_options: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_options.table.gz - 221.3 KB)
+0616.678 (2) Table wp_i28wtk_users: Total expected rows (approximate): 1
+0616.682 (2) Table wp_i28wtk_users: Total rows added: 1 in 0.00 seconds
+0616.685 (2) Table wp_i28wtk_users: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_users.table.gz - 0.6 KB)
+0616.690 (2) Table wp_i28wtk_usermeta: Total expected rows (approximate): 42
+0616.699 (2) Table wp_i28wtk_usermeta: Total rows added: 42 in 0.01 seconds
+0616.700 (2) Table wp_i28wtk_usermeta: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_usermeta.table.gz - 2 KB)
+0616.713 (2) Table wp_i28wtk_commentmeta: Total expected rows (approximate): 27405
+0618.298 (2) Table wp_i28wtk_commentmeta: binary mysqldump finished (writes: 51) in 1.58 seconds
+0618.301 (2) Table wp_i28wtk_commentmeta: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_commentmeta.table.gz - 5828.5 KB)
+0618.306 (2) Table wp_i28wtk_comments: Total expected rows (approximate): 7080
+0619.374 (2) Table wp_i28wtk_comments: Total rows added: 7080 in 1.07 seconds
+0619.376 (2) Table wp_i28wtk_comments: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_comments.table.gz - 1580.7 KB)
+0619.382 (2) Table wp_i28wtk_links: Total expected rows (approximate): 46
+0619.389 (2) Table wp_i28wtk_links: Total rows added: 46 in 0.01 seconds
+0619.390 (2) Table wp_i28wtk_links: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_links.table.gz - 1.7 KB)
+0619.395 (2) Table wp_i28wtk_postmeta: Total expected rows (approximate): 10355
+0619.459 (2) Table wp_i28wtk_postmeta: binary mysqldump finished (writes: 32) in 0.06 seconds
+0619.462 (2) Table wp_i28wtk_postmeta: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_postmeta.table.gz - 95.8 KB)
+0619.468 (2) Table wp_i28wtk_posts: Total expected rows (approximate): 2450
+0620.361 (2) Table wp_i28wtk_posts: Total rows added: 2450 in 0.89 seconds
+0620.363 (2) Table wp_i28wtk_posts: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_posts.table.gz - 1661.3 KB)
+0620.369 (2) Table wp_i28wtk_term_relationships: Total expected rows (approximate): 2561
+0620.408 (2) Table wp_i28wtk_term_relationships: Total rows added: 2561 in 0.04 seconds
+0620.410 (2) Table wp_i28wtk_term_relationships: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_term_relationships.table.gz - 7.7 KB)
+0620.415 (2) Table wp_i28wtk_term_taxonomy: Total expected rows (approximate): 58
+0620.420 (2) Table wp_i28wtk_term_taxonomy: Total rows added: 58 in 0.00 seconds
+0620.422 (2) Table wp_i28wtk_term_taxonomy: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_term_taxonomy.table.gz - 0.9 KB)
+0620.426 (2) Table wp_i28wtk_termmeta: Total expected rows (approximate): 0
+0620.429 (2) Table wp_i28wtk_termmeta: Total rows added: 0 in 0.00 seconds
+0620.430 (2) Table wp_i28wtk_termmeta: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_termmeta.table.gz - 0.4 KB)
+0620.434 (2) Table wp_i28wtk_terms: Total expected rows (approximate): 58
+0620.439 (2) Table wp_i28wtk_terms: Total rows added: 58 in 0.00 seconds
+0620.440 (2) Table wp_i28wtk_terms: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_terms.table.gz - 1 KB)
+0620.445 (2) Table wp_i28wtk_wfBadLeechers: Total expected rows (approximate): 0
+0620.447 (2) Table wp_i28wtk_wfBadLeechers: Total rows added: 0 in 0.00 seconds
+0620.448 (2) Table wp_i28wtk_wfBadLeechers: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfBadLeechers.table.gz - 0.3 KB)
+0620.453 (2) Table wp_i28wtk_wfBlockedIPLog: Total expected rows (approximate): 0
+0620.455 (2) Table wp_i28wtk_wfBlockedIPLog: Total rows added: 0 in 0.00 seconds
+0620.456 (2) Table wp_i28wtk_wfBlockedIPLog: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfBlockedIPLog.table.gz - 0.3 KB)
+0620.461 (2) Table wp_i28wtk_wfBlocks: Total expected rows (approximate): 0
+0620.464 (2) Table wp_i28wtk_wfBlocks: Total rows added: 0 in 0.00 seconds
+0620.465 (2) Table wp_i28wtk_wfBlocks: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfBlocks.table.gz - 0.4 KB)
+0620.470 (2) Table wp_i28wtk_wfBlocksAdv: Total expected rows (approximate): 0
+0620.473 (2) Table wp_i28wtk_wfBlocksAdv: Total rows added: 0 in 0.00 seconds
+0620.474 (2) Table wp_i28wtk_wfBlocksAdv: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfBlocksAdv.table.gz - 0.3 KB)
+0620.478 (2) Table wp_i28wtk_wfConfig: Total expected rows (approximate): 141
+0620.492 (2) Table wp_i28wtk_wfConfig: Total rows added: 141 in 0.01 seconds
+0620.500 (2) Table wp_i28wtk_wfConfig: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfConfig.table.gz - 4.9 KB)
+0620.509 (2) Table wp_i28wtk_wfCrawlers: Total expected rows (approximate): 34
+0620.513 (2) Table wp_i28wtk_wfCrawlers: Total rows added: 34 in 0.00 seconds
+0620.514 (2) Table wp_i28wtk_wfCrawlers: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfCrawlers.table.gz - 1.1 KB)
+0620.519 (2) Table wp_i28wtk_wfFileMods: Total expected rows (approximate): 1538
+0620.586 (2) Table wp_i28wtk_wfFileMods: Total rows added: 1538 in 0.07 seconds
+0620.588 (2) Table wp_i28wtk_wfFileMods: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfFileMods.table.gz - 67 KB)
+0620.593 (2) Table wp_i28wtk_wfHits: Total expected rows (approximate): 3678
+0620.914 (2) Table wp_i28wtk_wfHits: Total rows added: 3678 in 0.32 seconds
+0620.917 (2) Table wp_i28wtk_wfHits: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfHits.table.gz - 103.6 KB)
+0620.923 (2) Table wp_i28wtk_wfHoover: Total expected rows (approximate): 0
+0620.926 (2) Table wp_i28wtk_wfHoover: Total rows added: 0 in 0.00 seconds
+0620.927 (2) Table wp_i28wtk_wfHoover: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfHoover.table.gz - 0.3 KB)
+0620.935 (2) Table wp_i28wtk_wfIssues: Total expected rows (approximate): 0
+0620.938 (2) Table wp_i28wtk_wfIssues: Total rows added: 0 in 0.00 seconds
+0620.939 (2) Table wp_i28wtk_wfIssues: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfIssues.table.gz - 0.4 KB)
+0620.945 (2) Table wp_i28wtk_wfLeechers: Total expected rows (approximate): 5968
+0621.070 (2) Table wp_i28wtk_wfLeechers: Total rows added: 5968 in 0.12 seconds
+0621.072 (2) Table wp_i28wtk_wfLeechers: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfLeechers.table.gz - 30.4 KB)
+0621.077 (2) Table wp_i28wtk_wfLockedOut: Total expected rows (approximate): 0
+0621.080 (2) Table wp_i28wtk_wfLockedOut: Total rows added: 0 in 0.00 seconds
+0621.081 (2) Table wp_i28wtk_wfLockedOut: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfLockedOut.table.gz - 0.3 KB)
+0621.087 (2) Table wp_i28wtk_wfLocs: Total expected rows (approximate): 0
+0621.089 (2) Table wp_i28wtk_wfLocs: Total rows added: 0 in 0.00 seconds
+0621.091 (2) Table wp_i28wtk_wfLocs: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfLocs.table.gz - 0.4 KB)
+0621.096 (2) Table wp_i28wtk_wfLogins: Total expected rows (approximate): 183
+0621.110 (2) Table wp_i28wtk_wfLogins: Total rows added: 183 in 0.01 seconds
+0621.112 (2) Table wp_i28wtk_wfLogins: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfLogins.table.gz - 6.1 KB)
+0621.117 (2) Table wp_i28wtk_wfNet404s: Total expected rows (approximate): 1
+0621.120 (2) Table wp_i28wtk_wfNet404s: Total rows added: 1 in 0.00 seconds
+0621.121 (2) Table wp_i28wtk_wfNet404s: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfNet404s.table.gz - 0.4 KB)
+0621.126 (2) Table wp_i28wtk_wfReverseCache: Total expected rows (approximate): 2
+0621.130 (2) Table wp_i28wtk_wfReverseCache: Total rows added: 2 in 0.00 seconds
+0621.131 (2) Table wp_i28wtk_wfReverseCache: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfReverseCache.table.gz - 0.4 KB)
+0621.170 (2) Table wp_i28wtk_wfScanners: Total expected rows (approximate): 297
+0621.178 (2) Table wp_i28wtk_wfScanners: Total rows added: 297 in 0.01 seconds
+0621.180 (2) Table wp_i28wtk_wfScanners: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfScanners.table.gz - 2.5 KB)
+0621.186 (2) Table wp_i28wtk_wfStatus: Total expected rows (approximate): 1174
+0621.230 (2) Table wp_i28wtk_wfStatus: Total rows added: 1174 in 0.04 seconds
+0621.232 (2) Table wp_i28wtk_wfStatus: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfStatus.table.gz - 18.9 KB)
+0621.238 (2) Table wp_i28wtk_wfThrottleLog: Total expected rows (approximate): 0
+0621.240 (2) Table wp_i28wtk_wfThrottleLog: Total rows added: 0 in 0.00 seconds
+0621.241 (2) Table wp_i28wtk_wfThrottleLog: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfThrottleLog.table.gz - 0.3 KB)
+0621.247 (2) Table wp_i28wtk_wfVulnScanners: Total expected rows (approximate): 0
+0621.250 (2) Table wp_i28wtk_wfVulnScanners: Total rows added: 0 in 0.00 seconds
+0621.251 (2) Table wp_i28wtk_wfVulnScanners: finishing file (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfVulnScanners.table.gz - 0.3 KB)
+0621.256 (2) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_options.table.gz (1/32): adding to final database dump
+0621.340 (2) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_users.table.gz (2/32): adding to final database dump
+0621.343 (2) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_usermeta.table.gz (3/32): adding to final database dump
+0621.346 (2) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_commentmeta.table.gz (4/32): adding to final database dump
+0622.714 (2) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_comments.table.gz (5/32): adding to final database dump
+0623.206 (2) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_links.table.gz (6/32): adding to final database dump
+0623.209 (2) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_postmeta.table.gz (7/32): adding to final database dump
+0623.239 (2) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_posts.table.gz (8/32): adding to final database dump
+0623.762 (2) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_term_relationships.table.gz (9/32): adding to final database dump
+0623.790 (2) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_term_taxonomy.table.gz (10/32): adding to final database dump
+0623.793 (2) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_termmeta.table.gz (11/32): adding to final database dump
+0623.795 (2) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_terms.table.gz (12/32): adding to final database dump
+0623.797 (2) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfBadLeechers.table.gz (13/32): adding to final database dump
+0623.799 (2) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfBlockedIPLog.table.gz (14/32): adding to final database dump
+0623.800 (2) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfBlocks.table.gz (15/32): adding to final database dump
+0623.802 (2) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfBlocksAdv.table.gz (16/32): adding to final database dump
+0623.803 (2) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfConfig.table.gz (17/32): adding to final database dump
+0623.807 (2) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfCrawlers.table.gz (18/32): adding to final database dump
+0623.809 (2) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfFileMods.table.gz (19/32): adding to final database dump
+0623.837 (2) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfHits.table.gz (20/32): adding to final database dump
+0623.908 (2) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfHoover.table.gz (21/32): adding to final database dump
+0623.910 (2) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfIssues.table.gz (22/32): adding to final database dump
+0623.912 (2) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfLeechers.table.gz (23/32): adding to final database dump
+0918.390 (3) Opened log file at time: Sat, 13 Aug 2016 18:52:39 +0000 on http://www.plannedobsolescence.net
+0918.391 (3) UpdraftPlus WordPress backup plugin (https://updraftplus.com): 1.12.17 WP: 4.5.3 PHP: 5.6.24 (Linux dayton 3.2.61-grsec-modsign #1 SMP Tue Aug 12 09:58:26 UTC 2014 x86_64) MySQL: 5.6.25 WPLANG: en_US Server: Apache safe_mode: 0 max_execution_time: 900 memory_limit: 256M (used: 30.6M | 31M) multisite: N openssl: OpenSSL 1.0.1 14 Mar 2012 mcrypt: Y LANG:  ZipArchive::addFile: Y
+0918.394 (3) Free space on disk containing Updraft's temporary directory: 750998.2 MB
+0918.397 (3) Backup run: resumption=3, nonce=c288fbc79e57, begun at=1471113440 (919s ago), job type=backup, previous check-in=6.1s
+0918.401 (3) Scheduling a resumption (4) after 300 seconds (1471114659) in case this run gets aborted
+0918.414 (3) Checking if we have a zip executable available
+0918.415 (3) Zip engine: found/will use a binary zip: /usr/bin/zip
+0918.416 (3) Creation of backups of directories: already finished
+0918.417 (3) Saving backup status to database (elements: 8)
+0918.419 (3) Resuming creation of database dump (WordPress DB)
+0918.424 (3) Table wp_i28wtk_options: corresponding file already exists; moving on
+0918.425 (3) Table wp_i28wtk_users: corresponding file already exists; moving on
+0918.426 (3) Table wp_i28wtk_usermeta: corresponding file already exists; moving on
+0918.426 (3) Table wp_i28wtk_commentmeta: corresponding file already exists; moving on
+0918.428 (3) Table wp_i28wtk_comments: corresponding file already exists; moving on
+0918.429 (3) Table wp_i28wtk_links: corresponding file already exists; moving on
+0918.430 (3) Table wp_i28wtk_postmeta: corresponding file already exists; moving on
+0918.431 (3) Table wp_i28wtk_posts: corresponding file already exists; moving on
+0918.432 (3) Table wp_i28wtk_term_relationships: corresponding file already exists; moving on
+0918.433 (3) Table wp_i28wtk_term_taxonomy: corresponding file already exists; moving on
+0918.433 (3) Table wp_i28wtk_termmeta: corresponding file already exists; moving on
+0918.434 (3) Table wp_i28wtk_terms: corresponding file already exists; moving on
+0918.435 (3) Table wp_i28wtk_wfBadLeechers: corresponding file already exists; moving on
+0918.436 (3) Table wp_i28wtk_wfBlockedIPLog: corresponding file already exists; moving on
+0918.437 (3) Table wp_i28wtk_wfBlocks: corresponding file already exists; moving on
+0918.438 (3) Table wp_i28wtk_wfBlocksAdv: corresponding file already exists; moving on
+0918.446 (3) Table wp_i28wtk_wfConfig: corresponding file already exists; moving on
+0918.447 (3) Table wp_i28wtk_wfCrawlers: corresponding file already exists; moving on
+0918.448 (3) Table wp_i28wtk_wfFileMods: corresponding file already exists; moving on
+0918.449 (3) Table wp_i28wtk_wfHits: corresponding file already exists; moving on
+0918.450 (3) Table wp_i28wtk_wfHoover: corresponding file already exists; moving on
+0918.451 (3) Table wp_i28wtk_wfIssues: corresponding file already exists; moving on
+0918.452 (3) Table wp_i28wtk_wfLeechers: corresponding file already exists; moving on
+0918.453 (3) Table wp_i28wtk_wfLockedOut: corresponding file already exists; moving on
+0918.454 (3) Table wp_i28wtk_wfLocs: corresponding file already exists; moving on
+0918.455 (3) Table wp_i28wtk_wfLogins: corresponding file already exists; moving on
+0918.456 (3) Table wp_i28wtk_wfNet404s: corresponding file already exists; moving on
+0918.456 (3) Table wp_i28wtk_wfReverseCache: corresponding file already exists; moving on
+0918.458 (3) Table wp_i28wtk_wfScanners: corresponding file already exists; moving on
+0918.459 (3) Table wp_i28wtk_wfStatus: corresponding file already exists; moving on
+0918.459 (3) Table wp_i28wtk_wfThrottleLog: corresponding file already exists; moving on
+0918.460 (3) Table wp_i28wtk_wfVulnScanners: corresponding file already exists; moving on
+0918.461 (3) The final database file (/home/plannedo/plannedobsolescence.net/wp-content/updraft/backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db.gz) exists, but was apparently not modified within the last 30 seconds (time_mod=1471114064, time_now=1471114359, diff=295). Thus we assume that another UpdraftPlus terminated; thus we will continue.
+0918.466 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_options.table.gz (1/32): adding to final database dump
+0918.551 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_users.table.gz (2/32): adding to final database dump
+0918.554 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_usermeta.table.gz (3/32): adding to final database dump
+0918.557 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_commentmeta.table.gz (4/32): adding to final database dump
+0919.919 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_comments.table.gz (5/32): adding to final database dump
+0920.420 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_links.table.gz (6/32): adding to final database dump
+0920.423 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_postmeta.table.gz (7/32): adding to final database dump
+0920.452 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_posts.table.gz (8/32): adding to final database dump
+0921.001 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_term_relationships.table.gz (9/32): adding to final database dump
+0921.028 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_term_taxonomy.table.gz (10/32): adding to final database dump
+0921.031 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_termmeta.table.gz (11/32): adding to final database dump
+0921.032 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_terms.table.gz (12/32): adding to final database dump
+0921.034 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfBadLeechers.table.gz (13/32): adding to final database dump
+0921.036 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfBlockedIPLog.table.gz (14/32): adding to final database dump
+0921.037 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfBlocks.table.gz (15/32): adding to final database dump
+0921.039 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfBlocksAdv.table.gz (16/32): adding to final database dump
+0921.040 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfConfig.table.gz (17/32): adding to final database dump
+0921.043 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfCrawlers.table.gz (18/32): adding to final database dump
+0921.045 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfFileMods.table.gz (19/32): adding to final database dump
+0921.075 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfHits.table.gz (20/32): adding to final database dump
+0921.144 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfHoover.table.gz (21/32): adding to final database dump
+0921.147 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfIssues.table.gz (22/32): adding to final database dump
+0921.149 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfLeechers.table.gz (23/32): adding to final database dump
+0921.208 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfLockedOut.table.gz (24/32): adding to final database dump
+0921.210 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfLocs.table.gz (25/32): adding to final database dump
+0921.212 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfLogins.table.gz (26/32): adding to final database dump
+0921.217 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfNet404s.table.gz (27/32): adding to final database dump
+0921.219 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfReverseCache.table.gz (28/32): adding to final database dump
+0921.222 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfScanners.table.gz (29/32): adding to final database dump
+0921.227 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfStatus.table.gz (30/32): adding to final database dump
+0921.247 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfThrottleLog.table.gz (31/32): adding to final database dump
+0921.249 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db-table-wp_i28wtk_wfVulnScanners.table.gz (32/32): adding to final database dump
+0921.251 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db.gz: finished writing out complete database file (9472 KB)
+0921.319 (3) Total database tables backed up: 32 (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db.gz, size: 9869755, checksum (SHA1): 7d15cea9a746eab89d326f3cc369d5cac6e6f81b)
+0921.327 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip: plugins: This file has not yet been successfully uploaded: will queue
+0921.328 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-themes.zip: themes: This file has not yet been successfully uploaded: will queue
+0921.329 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-uploads.zip: uploads: This file has not yet been successfully uploaded: will queue
+0921.330 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-others.zip: others: This file has not yet been successfully uploaded: will queue
+0921.331 (3) backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db.gz: db: This file has not yet been successfully uploaded: will queue
+0921.332 (3) Saving backup history. Total backup size: 39.6 MB
+0921.335 (3) Requesting upload of the files that have not yet been successfully uploaded (5)
+0921.340 (3) Cloud backup selection (1/1): dropbox (last)
+0921.342 (3) Beginning dispatch of backup to remote (dropbox)
+0921.343 (3) Dropbox: begin cloud upload
+0921.349 (3) Dropbox: access gained; setting chunk size to: 1024 KB
+0921.842 (3) Dropbox quota usage: normal=115427.1 MB, shared=477 MB, total=1085696 MB, available=969791.9 MB
+0921.843 (3) Dropbox: Attempt to upload: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip to: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip
+0924.287 (3) Dropbox chunked upload: 7.1 % uploaded (AAAAAAABgSeyZnLNILdXcQ, 1048576, 3584 KB)
+0930.463 (3) Dropbox chunked upload: 31.8 % uploaded (AAAAAAABgSeyZnLNILdXcQ, 4718592, 5120 KB)
+0935.274 (3) Dropbox chunked upload: 67.1 % uploaded (AAAAAAABgSeyZnLNILdXcQ, 9961472, 9216 KB)
+0941.431 (3) Dropbox chunked upload: 100 % uploaded (AAAAAAABgSeyZnLNILdXcQ, 14851696, 9216 KB)
+0945.756 (3) Recording as successfully uploaded: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip (2e8c32ed94d1ef6cdd157768cef3a55a)
+0945.766 (3) Deleting local file: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip: OK
+0945.767 (3) Dropbox: File upload success (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-plugins.zip): 14503 KB in 23s (606 KB/s)
+0945.975 (3) Dropbox quota usage: normal=115441.3 MB, shared=477 MB, total=1085696 MB, available=969777.8 MB
+0945.977 (3) Dropbox: Attempt to upload: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-themes.zip to: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-themes.zip
+0950.819 (3) Dropbox chunked upload: 100 % uploaded (AAAAAAABgSjaGcrnuNNspg, 8198204, 9216 KB)
+0956.652 (3) Recording as successfully uploaded: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-themes.zip (9d4556bb0592a6a9b80c195d9d614897)
+0956.659 (3) Deleting local file: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-themes.zip: OK
+0956.661 (3) Dropbox: File upload success (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-themes.zip): 8006 KB in 10s (749 KB/s)
+0957.900 (3) Dropbox quota usage: normal=115449.1 MB, shared=477 MB, total=1085696 MB, available=969769.9 MB
+0957.901 (3) Dropbox: Attempt to upload: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-uploads.zip to: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-uploads.zip
+0963.335 (3) Dropbox chunked upload: 100 % uploaded (AAAAAAABgSmbktXe-V708A, 8510768, 9216 KB)
+0965.653 (3) Recording as successfully uploaded: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-uploads.zip (d913774c83f7c453b40520a817b0b682)
+0965.661 (3) Deleting local file: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-uploads.zip: OK
+0965.662 (3) Dropbox: File upload success (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-uploads.zip): 8311 KB in 7s (1070 KB/s)
+0965.868 (3) Dropbox quota usage: normal=115457.2 MB, shared=477 MB, total=1085696 MB, available=969761.8 MB
+0965.870 (3) Dropbox: Attempt to upload: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-others.zip to: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-others.zip
+0966.627 (3) Dropbox chunked upload: 100 % uploaded (AAAAAAABgSpp38PgeJghJA, 45594, 9216 KB)
+0967.797 (3) Recording as successfully uploaded: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-others.zip (3295fd3a67d99c0a82a8b7f343f23bb9)
+0967.802 (3) Deleting local file: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-others.zip: OK
+0967.803 (3) Dropbox: File upload success (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-others.zip): 44 KB in 1s (23 KB/s)
+0968.046 (3) Dropbox quota usage: normal=115457.2 MB, shared=477 MB, total=1085696 MB, available=969761.8 MB
+0968.047 (3) Dropbox: Attempt to upload: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db.gz to: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db.gz
+0974.757 (3) Dropbox chunked upload: 95.6 % uploaded (AAAAAAABgSuKo64IcczScg, 9437184, 10240 KB)
+0978.119 (3) Dropbox chunked upload: 100 % uploaded (AAAAAAABgSuKo64IcczScg, 9869755, 10240 KB)
+0982.070 (3) Recording as successfully uploaded: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db.gz (cd42a7b6852d3b3d8601444b618e7a3f)
+0982.078 (3) Deleting local file: backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db.gz: OK
+0982.079 (3) Dropbox: File upload success (backup_2016-08-13-1437_Planned_Obsolescence_c288fbc79e57-db.gz): 9638 KB in 14s (686 KB/s)
+0982.082 (3) Retain: beginning examination of existing backup sets; user setting: retain_files=2, retain_db=2
+0982.084 (3) Number of backup sets in history: 3; groups (db): 1
+0982.085 (3) Examining (for databases) backup set with group_id=0, nonce=c288fbc79e57, datestamp=1471113440 (Aug 13 2016 18:37:20)
+0982.086 (3) This backup set is the backup set just made, so will not be deleted.
+0982.086 (3) Examining (for databases) backup set with group_id=0, nonce=1ba1937818a9, datestamp=1470508612 (Aug 06 2016 18:36:52)
+0982.088 (3) This backup set remains non-empty (f=1/d=1); will retain in history
+0982.088 (3) Examining (for databases) backup set with group_id=0, nonce=be889ab48234, datestamp=1469903986 (Jul 30 2016 18:39:46)
+0982.089 (3) 1469903986: db: this set includes a database (backup_2016-07-30-1439_Planned_Obsolescence_be889ab48234-db.gz); db count is now 2
+0982.090 (3) 1469903986: db: over retain limit (2); will delete this database
+0982.091 (3) Delete file: backup_2016-07-30-1439_Planned_Obsolescence_be889ab48234-db.gz, service=dropbox
+0982.092 (3) Dropbox: request deletion: backup_2016-07-30-1439_Planned_Obsolescence_be889ab48234-db.gz
+0982.454 (3) Dropbox: delete succeeded
+0982.457 (3) This backup set remains non-empty (f=1/d=0); will retain in history
+0982.458 (3) Number of backup sets in history: 3; groups (files): 1
+0982.459 (3) Examining (for files) backup set with nonce=c288fbc79e57, datestamp=1471113440 (Aug 13 2016 18:37:20)
+0982.460 (3) This backup set is the backup set just made, so will not be deleted.
+0982.461 (3) This backup set is the backup set just made, so will not be deleted.
+0982.461 (3) This backup set is the backup set just made, so will not be deleted.
+0982.462 (3) This backup set is the backup set just made, so will not be deleted.
+0982.462 (3) This backup set remains non-empty (f=1/d=1); will retain in history
+0982.463 (3) Examining (for files) backup set with nonce=1ba1937818a9, datestamp=1470508612 (Aug 06 2016 18:36:52)
+0982.463 (3) This backup set remains non-empty (f=1/d=1); will retain in history
+0982.464 (3) Examining (for files) backup set with nonce=be889ab48234, datestamp=1469903986 (Jul 30 2016 18:39:46)
+0982.465 (3) plugins: over retain limit (2); will delete this file entity
+0982.466 (3) themes: over retain limit (2); will delete this file entity
+0982.467 (3) uploads: over retain limit (2); will delete this file entity
+0982.468 (3) others: over retain limit (2); will delete this file entity
+0982.469 (3) Delete file: backup_2016-07-30-1439_Planned_Obsolescence_be889ab48234-plugins.zip, service=dropbox
+0982.469 (3) Delete file: backup_2016-07-30-1439_Planned_Obsolescence_be889ab48234-themes.zip, service=dropbox
+0982.470 (3) Delete file: backup_2016-07-30-1439_Planned_Obsolescence_be889ab48234-uploads.zip, service=dropbox
+0982.471 (3) Delete file: backup_2016-07-30-1439_Planned_Obsolescence_be889ab48234-others.zip, service=dropbox
+0982.472 (3) Dropbox: request deletion: backup_2016-07-30-1439_Planned_Obsolescence_be889ab48234-plugins.zip
+0982.796 (3) Dropbox: delete succeeded
+0982.797 (3) Dropbox: request deletion: backup_2016-07-30-1439_Planned_Obsolescence_be889ab48234-themes.zip
+0983.154 (3) Dropbox: delete succeeded
+0983.155 (3) Dropbox: request deletion: backup_2016-07-30-1439_Planned_Obsolescence_be889ab48234-uploads.zip
+0983.558 (3) Dropbox: delete succeeded
+0983.560 (3) Dropbox: request deletion: backup_2016-07-30-1439_Planned_Obsolescence_be889ab48234-others.zip
+0983.885 (3) Dropbox: delete succeeded
+0983.888 (3) This backup set is now empty; will remove from history
+0983.889 (3) Deleting log file (log.be889ab48234.txt)
+0983.890 (3) Retain: saving new backup history (sets now: 2) and finishing retain operation
+0983.895 (3) Resume backup (c288fbc79e57, 3): finish run
+0983.897 (3) There were no errors in the uploads, so the 'resume' event (4) is being unscheduled
+0983.902 (3) Fetching RSS news feed
+0984.371 (3) Fetched RSS news feed; result is a: SimplePie
+0984.375 (3) Sending email ('Files and database (Full backup)') report (attachments: 0, size: 0 KB) to: kfitz...
+0984.509 (3) The backup apparently succeeded and is now complete

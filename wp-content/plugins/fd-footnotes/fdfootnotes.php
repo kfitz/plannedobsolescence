@@ -4,7 +4,7 @@ Plugin Name: FD Footnotes
 Plugin URI: http://flagrantdisregard.com/footnotes-plugin
 Description: Elegant and easy to use footnotes
 Author: John Watson
-Version: 1.31
+Version: 1.36
 Author URI: http://flagrantdisregard.com
 
 Copyright (C) 2008 John Watson
@@ -40,7 +40,7 @@ function fdfootnote_enqueue_scripts() {
 	
 	wp_enqueue_script('jquery');
 	
-	wp_register_script('fdfootnote_script', get_bloginfo('wpurl').'/'.PLUGINDIR.'/'.dirname(plugin_basename(__FILE__)).'/fdfootnotes.js', array(), '1.3');
+	wp_register_script('fdfootnote_script', get_bloginfo('wpurl').'/'.PLUGINDIR.'/'.dirname(plugin_basename(__FILE__)).'/fdfootnotes.js', array('jquery'), '1.34');
 	wp_enqueue_script('fdfootnote_script');
 }
 
@@ -125,6 +125,7 @@ function fdfootnote_convert($content) {
 			$note = preg_replace('/\[\d+\.(.*?)\]/s', '\1', $fn);
 			$notes[$n] = $note;
 
+			$singleurl = '';
 			if ($linksingle) $singleurl = get_permalink();
 			
 			$content = str_replace($fn, "<sup class='footnote'><a href='$singleurl#fn-$post_id-$n' id='fnref-$post_id-$n' onclick='return fdfootnote_show($post_id)'>$n</a></sup>", $content);

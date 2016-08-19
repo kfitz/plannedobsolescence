@@ -1,0 +1,309 @@
+# Translation of Independent-publisher in German
+# This file is distributed under the same license as the Independent-publisher package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2015-06-25 03:59:14+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/1.0-alpha-1100\n"
+"Project-Id-Version: Independent-publisher\n"
+
+#: inc/template-tags.php:132 inc/template-tags.php:262
+msgid "Featured"
+msgstr "Bemerkenswert"
+
+#: template-parts/header-cover-image.php:11
+msgid "Home"
+msgstr "Startseite"
+
+#: template-parts/content-single.php:69
+msgid "Published"
+msgstr "Veröffentlicht"
+
+#: template-parts/content-single.php:47
+msgid "Tagged"
+msgstr "Getaggt mit"
+
+#: template-parts/content-none.php:29
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "Wie es scheint, kann das Gesuchte nicht gefunden werden. Vielleicht hilft die Suchfunktion."
+
+#: template-parts/content-none.php:24
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "Tut mir Leid, aber zu deinem Suchbegriff konnte nichts gefunden werden. Versuche es mit anderen Schlüsselwörtern doch erneut."
+
+#: template-parts/content-none.php:20
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "Bereit deinen ersten Beitrag zu veröffentlichen? <a href=\"%1$s\">Erste Schritte</a>."
+
+#: template-parts/content-none.php:14
+msgid "Nothing Found"
+msgstr "Nichts gefunden"
+
+#: search.php:16
+msgid "Search Results for: %s"
+msgstr "Suchergebnisse für: %s"
+
+#: inc/template-tags.php:346
+msgid "Archives"
+msgstr "Archive"
+
+#. translators: 1: Taxonomy singular name, 2: Current taxonomy term
+#: inc/template-tags.php:344
+msgid "%1$s: %2$s"
+msgstr "%1$s @ %2$s"
+
+#: inc/template-tags.php:340
+msgid "Archives: %s"
+msgstr "Archive: %s"
+
+#: inc/template-tags.php:337
+msgctxt "post format archive title"
+msgid "Chats"
+msgstr "Chats"
+
+#: inc/template-tags.php:335
+msgctxt "post format archive title"
+msgid "Audio"
+msgstr "Audio"
+
+#: inc/template-tags.php:333
+msgctxt "post format archive title"
+msgid "Statuses"
+msgstr "Status"
+
+#: inc/template-tags.php:331
+msgctxt "post format archive title"
+msgid "Links"
+msgstr "Links"
+
+#: inc/template-tags.php:329
+msgctxt "post format archive title"
+msgid "Quotes"
+msgstr "Zitate"
+
+#: inc/template-tags.php:327
+msgctxt "post format archive title"
+msgid "Videos"
+msgstr "Videos"
+
+#: inc/template-tags.php:325
+msgctxt "post format archive title"
+msgid "Images"
+msgstr "Bilder"
+
+#: inc/template-tags.php:323
+msgctxt "post format archive title"
+msgid "Galleries"
+msgstr "Galerien"
+
+#: inc/template-tags.php:321
+msgctxt "post format archive title"
+msgid "Asides"
+msgstr "Kurzmitteilungen"
+
+#: inc/template-tags.php:318
+msgctxt "daily archives date format"
+msgid "F j, Y"
+msgstr "j. F Y"
+
+#: inc/template-tags.php:318
+msgid "Day: %s"
+msgstr "Tag: %s"
+
+#: inc/template-tags.php:316
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr "F Y"
+
+#: inc/template-tags.php:316
+msgid "Month: %s"
+msgstr "Monat: %s"
+
+#: inc/template-tags.php:314
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr "Y"
+
+#: inc/template-tags.php:314
+msgid "Year: %s"
+msgstr "Jahr: %s"
+
+#: inc/template-tags.php:312
+msgid "Author: %s"
+msgstr "Autor: %s"
+
+#: inc/template-tags.php:310
+msgid "Tag: %s"
+msgstr "Tag: %s"
+
+#: inc/template-tags.php:308
+msgid "Category: %s"
+msgstr "Kategorie: %s"
+
+#: inc/template-tags.php:238
+msgid "% Comments"
+msgstr "% Kommentare"
+
+#: inc/template-tags.php:238
+msgid "1 Comment"
+msgstr "1 Kommentar"
+
+#: inc/template-tags.php:238
+msgid "Leave a comment"
+msgstr "Hinterlasse einen Kommentar"
+
+#: inc/template-tags.php:209
+msgid "Tagged %1$s"
+msgstr "Getaggt mit %1$s"
+
+#: inc/template-tags.php:202
+msgid "in %1$s"
+msgstr "in %1$s"
+
+#: inc/template-tags.php:195
+msgctxt "post author"
+msgid "By %s"
+msgstr "von %s"
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:200 inc/template-tags.php:207
+msgid ", "
+msgstr ", "
+
+#. translators: %s: the category list
+#: inc/template-tags.php:162
+msgid "in %s"
+msgstr "in %s"
+
+#: inc/template-tags.php:85
+msgid "Post navigation"
+msgstr "Beitragsnavigation"
+
+#: inc/template-tags.php:60
+msgid "Newer posts"
+msgstr "Neuere Beiträge"
+
+#: inc/template-tags.php:56
+msgid "Older posts"
+msgstr "Ältere Beiträge"
+
+#: inc/template-tags.php:52
+msgid "Posts navigation"
+msgstr "Beiträge-Navigation"
+
+#: inc/template-tags.php:22
+msgid "Newer Comments"
+msgstr "Neuere Kommentare"
+
+#: inc/template-tags.php:21
+msgid "Older Comments"
+msgstr "Ältere Kommentare"
+
+#: inc/template-tags.php:18
+msgid "Comment navigation"
+msgstr "Kommentar-Navigation"
+
+#: inc/customizer.php:29
+msgid "Gravatar"
+msgstr "Gravatar"
+
+#: inc/extras.php:82
+msgid "Page %s"
+msgstr "Seite %s"
+
+#: inc/customizer.php:19
+msgid "Theme Options"
+msgstr "Theme-Optionen"
+
+#: image.php:68
+msgid "Next Image"
+msgstr "Bild"
+
+#: image.php:67
+msgid "Previous Image"
+msgstr "Vorheriges Bild"
+
+#: image.php:53 template-parts/content-page.php:22
+#: template-parts/content-single.php:41 template-parts/content.php:34
+msgid "Pages:"
+msgstr "Seiten:"
+
+#: image.php:59 inc/template-tags.php:243 template-parts/content-page.php:28
+#: template-parts/content-single.php:48
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: footer.php:25 footer.php:27 header.php:57
+#: template-parts/header-cover-image.php:15
+#: template-parts/header-cover-image.php:34
+msgid "Menu"
+msgstr "Menü"
+
+#: header.php:24
+msgid "Skip to content"
+msgstr "Zum Inhalt springen"
+
+#: functions.php:167
+msgid "Sidebar"
+msgstr "Seitenleiste"
+
+#: functions.php:116
+msgctxt "PT Sans font: on or off"
+msgid "on"
+msgstr "on"
+
+#: functions.php:123
+msgctxt "PT Serif font: on or off"
+msgid "on"
+msgstr "on"
+
+#: functions.php:48
+msgid "Social Menu"
+msgstr "Social Media-Menü"
+
+#: functions.php:47
+msgid "Primary Menu"
+msgstr "Primäres Menü"
+
+#: footer.php:18
+msgid "Theme: %1$s by %2$s."
+msgstr "Theme: %1$s von %2$s."
+
+#: footer.php:16
+msgid "Proudly powered by %s"
+msgstr "Proudly powered by %s"
+
+#: footer.php:16
+msgid "http://wordpress.org/"
+msgstr "http://wordpress.org/"
+
+#: comments.php:56
+msgid "Comments are closed."
+msgstr "Die Kommentarfunktion ist geschlossen."
+
+#: comments.php:29
+msgctxt "comments title"
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] "Ein Gedanke zu &ldquo;%2$s&rdquo;"
+msgstr[1] "%1$s Gedanken zu &ldquo;%2$s&rdquo;"
+
+#. translators: %1$s: smiley
+#: 404.php:44
+msgid "Try looking in the monthly archives. %1$s"
+msgstr "Versuchs mit einem Blick in die monatlichen Archive. %1$s"
+
+#: 404.php:27
+msgid "Most Used Categories"
+msgstr "Oft verwendete Kategorien"
+
+#: 404.php:19
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr "Sieht so aus, als ob an dieser Stelle nichts gefunden wird. Vielleicht versuchst Du es mit einem der Links unten oder einer Suche?"
+
+#: 404.php:15
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "Uups! Diese Seite konnte leider nicht gefunden werden."

@@ -22,7 +22,7 @@ blockquote cite {
 }
 
 blockquote cite a {
-  color: #57ad68;
+  color: #57ad68 !important;
 }
 
 .format-aside .entry-content {
@@ -43,7 +43,7 @@ blockquote cite a {
   text-align: right;
 }
 
-.format-quote blockquote a cite {
+.format-quote blockquote cite a {
   color: #57ad68 !important;
   text-decoration: none;
 }

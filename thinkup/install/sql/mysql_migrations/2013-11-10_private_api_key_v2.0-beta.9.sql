@@ -1,1 +1,0 @@
-ALTER TABLE  tu_owners ADD  api_key_private VARCHAR( 32 ) NULL DEFAULT NULL COMMENT  'Optional non-user-facing API key.';

@@ -1,0 +1,184 @@
+# Translation of Independent-publisher in Chinese (China)
+# This file is distributed under the same license as the Independent-publisher package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2015-06-23 04:03:44+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: GlotPress/1.0-alpha-1000\n"
+"Project-Id-Version: Independent-publisher\n"
+
+#: inc/template-tags.php:212
+msgid "% Comments"
+msgstr "%条评论"
+
+#: inc/template-tags.php:212
+msgid "1 Comment"
+msgstr "1条评论"
+
+#: inc/template-tags.php:212
+msgid "Leave a comment"
+msgstr "发表评论"
+
+#: inc/template-tags.php:192
+msgid "Tagged %1$s"
+msgstr "已添加标签 %1$s"
+
+#: inc/template-tags.php:185
+msgid "in %1$s"
+msgstr ""
+
+#: inc/template-tags.php:163 inc/template-tags.php:206
+msgctxt "word count"
+msgid "%s Words"
+msgstr ""
+
+#: inc/template-tags.php:178
+msgctxt "post author"
+msgid "By %s"
+msgstr ""
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:183 inc/template-tags.php:190
+msgid ", "
+msgstr "， "
+
+#. translators: %s: the category list
+#: inc/template-tags.php:156
+msgid "in %s"
+msgstr "于 %s"
+
+#: inc/template-tags.php:85
+msgid "Post navigation"
+msgstr "文章导航"
+
+#: inc/template-tags.php:60
+msgid "Newer posts"
+msgstr "较新的文章"
+
+#: inc/template-tags.php:56
+msgid "Older posts"
+msgstr "较旧的文章"
+
+#: inc/template-tags.php:52
+msgid "Posts navigation"
+msgstr "文章导航"
+
+#: inc/template-tags.php:22
+msgid "Newer Comments"
+msgstr "较新评论"
+
+#: inc/template-tags.php:21
+msgid "Older Comments"
+msgstr "早前评论"
+
+#: inc/template-tags.php:18
+msgid "Comment navigation"
+msgstr "评论导航"
+
+#: inc/customizer.php:29
+msgid "Gravatar"
+msgstr ""
+
+#: inc/customizer.php:40
+msgid "Use Post Cover Images"
+msgstr ""
+
+#: inc/extras.php:62
+msgid "Page %s"
+msgstr "第 %s 页"
+
+#: inc/customizer.php:19
+msgid "Theme Options"
+msgstr "主题设置"
+
+#: image.php:68
+msgid "Next Image"
+msgstr "下一图片"
+
+#: image.php:67
+msgid "Previous Image"
+msgstr "上一张图片"
+
+#: image.php:53 template-parts/content-page.php:22
+#: template-parts/content-single.php:41 template-parts/content.php:34
+msgid "Pages:"
+msgstr "页面："
+
+#: image.php:59 inc/template-tags.php:217 template-parts/content-page.php:28
+#: template-parts/content-single.php:48
+msgid "Edit"
+msgstr "编辑"
+
+#: footer.php:25 footer.php:27 header.php:57
+#: template-parts/header-cover-image.php:15
+#: template-parts/header-cover-image.php:34
+msgid "Menu"
+msgstr "菜单"
+
+#: header.php:24
+msgid "Skip to content"
+msgstr "跳至内容"
+
+#: functions.php:167
+msgid "Sidebar"
+msgstr "侧边栏"
+
+#: functions.php:116
+msgctxt "PT Sans font: on or off"
+msgid "on"
+msgstr ""
+
+#: functions.php:123
+msgctxt "PT Serif font: on or off"
+msgid "on"
+msgstr "on"
+
+#: functions.php:48
+msgid "Social Menu"
+msgstr "社交菜单"
+
+#: functions.php:47
+msgid "Primary Menu"
+msgstr "主要菜单"
+
+#: footer.php:18
+msgid "Theme: %1$s by %2$s."
+msgstr "主题: %1$s 作者 %2$s."
+
+#: footer.php:16
+msgid "Proudly powered by %s"
+msgstr "自豪地采用%s"
+
+#: footer.php:16
+msgid "http://wordpress.org/"
+msgstr "http://cn.wordpress.org/"
+
+#: comments.php:56
+msgid "Comments are closed."
+msgstr "评论功能被关闭。"
+
+#: comments.php:29
+msgctxt "comments title"
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] "《%2$s》有%s个想法"
+
+#. translators: %1$s: smiley
+#: 404.php:44
+msgid "Try looking in the monthly archives. %1$s"
+msgstr "尝试在每月的档案中查找。%1$s"
+
+#: 404.php:27
+msgid "Most Used Categories"
+msgstr "使用次数最多的种类"
+
+#: 404.php:19
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr "在此位置似乎没有找到任何内容。或许您可以尝试点击下面的某个链接或进行搜索？"
+
+#: 404.php:15
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "抱歉！无法找到该页面。"

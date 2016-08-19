@@ -1,0 +1,202 @@
+# Translation of Independent-publisher in Japanese
+# This file is distributed under the same license as the Independent-publisher package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2015-08-14 17:49:49+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: GlotPress/1.0-alpha-1100\n"
+"Project-Id-Version: Independent-publisher\n"
+
+#. Description of the plugin/theme
+#: wp-content/themes/pub/independent-publisher/style.css
+msgid "Beautiful reader-focused theme with a clean and responsive layout, ideal for personal bloggers. It has great readability with a large font, and also provides full width post cover images, which are perfect to showcase your content."
+msgstr "すっきりとしたレスポンシブレイアウトで読者に焦点を当てた、個人ブロガーに最適な美しいテーマ。大きいフォントのため非常に読みやすく、全幅投稿カバー画像はコンテンツを展示するのに最適です。"
+
+#: inc/template-tags.php:74 inc/template-tags.php:204
+msgid "Featured"
+msgstr "注目"
+
+#: template-parts/header-cover-image.php:11
+msgid "Home"
+msgstr "ホーム"
+
+#: template-parts/content-single.php:69
+msgid "Published"
+msgstr "公開済み"
+
+#: template-parts/content-single.php:47
+msgid "Tagged"
+msgstr "タグ"
+
+#: template-parts/content-none.php:29
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "お探しのコンテンツを見つけられませんでした。検索をお試しください。"
+
+#: template-parts/content-none.php:24
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "ご指定の検索条件に一致する投稿がありませんでした。他のキーワードでもう一度検索してみてください。"
+
+#: template-parts/content-none.php:20
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "最初の投稿をする準備ができましたか ?  <a href=\"%1$s\">ここからスタート</a>してください。"
+
+#: template-parts/content-none.php:14
+msgid "Nothing Found"
+msgstr "見つかりませんでした。"
+
+#: search.php:16
+msgid "Search Results for: %s"
+msgstr "検索結果: %s"
+
+#. translators: %s: Name of current post
+#: inc/template-tags.php:228 template-parts/content-search.php:28
+#: template-parts/content.php:25
+msgid "Continue reading %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "%s の続きを読む <span class=\"meta-nav\">&rarr;</span>"
+
+#: inc/template-tags.php:180
+msgid "% Comments"
+msgstr "%件のコメント"
+
+#: inc/template-tags.php:180
+msgid "1 Comment"
+msgstr "1件のコメント"
+
+#: inc/template-tags.php:180
+msgid "Leave a comment"
+msgstr "コメントをどうぞ"
+
+#: inc/template-tags.php:151
+msgid "Tagged %1$s"
+msgstr "タグ:  %1$s"
+
+#: inc/template-tags.php:144
+msgid "in %1$s"
+msgstr "(%1$s フォーラム)"
+
+#: inc/template-tags.php:137
+msgctxt "post author"
+msgid "By %s"
+msgstr "投稿者: %s"
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:142 inc/template-tags.php:149
+msgid ", "
+msgstr ", "
+
+#. translators: %s: the category list
+#: inc/template-tags.php:104
+msgid "in %s"
+msgstr "カテゴリー: %s"
+
+#: inc/template-tags.php:22
+msgid "Newer Comments"
+msgstr "より新しいコメント"
+
+#: inc/template-tags.php:21
+msgid "Older Comments"
+msgstr "過去のコメント"
+
+#: inc/template-tags.php:18
+msgid "Comment navigation"
+msgstr "コメントナビゲーション"
+
+#: inc/customizer.php:29
+msgid "Gravatar"
+msgstr "Gravatar"
+
+#: inc/customizer.php:19
+msgid "Theme Options"
+msgstr "テーマオプション"
+
+#: image.php:68
+msgid "Next Image"
+msgstr "次の画像"
+
+#: image.php:67
+msgid "Previous Image"
+msgstr "前の画像"
+
+#: image.php:53 template-parts/content-page.php:26
+#: template-parts/content-single.php:41 template-parts/content.php:34
+msgid "Pages:"
+msgstr "ページ:"
+
+#: image.php:59 inc/template-tags.php:185 template-parts/content-page.php:32
+#: template-parts/content-single.php:48
+msgid "Edit"
+msgstr "編集"
+
+#: footer.php:25 footer.php:27 header.php:59
+#: template-parts/header-cover-image.php:15
+#: template-parts/header-cover-image.php:34
+msgid "Menu"
+msgstr "メニュー"
+
+#: header.php:24
+msgid "Skip to content"
+msgstr "コンテンツへ移動"
+
+#: functions.php:167
+msgid "Sidebar"
+msgstr "サイドバー"
+
+#: functions.php:116
+msgctxt "PT Sans font: on or off"
+msgid "on"
+msgstr "on"
+
+#: functions.php:123
+msgctxt "PT Serif font: on or off"
+msgid "on"
+msgstr "on"
+
+#: functions.php:48
+msgid "Social Menu"
+msgstr "ソーシャルメニュー"
+
+#: functions.php:47
+msgid "Primary Menu"
+msgstr "メインメニュー"
+
+#: footer.php:18
+msgid "Theme: %1$s by %2$s."
+msgstr "Theme: %1$s by %2$s."
+
+#: footer.php:16
+msgid "Proudly powered by %s"
+msgstr "Proudly powered by %s"
+
+#: footer.php:16
+msgid "http://wordpress.org/"
+msgstr "http://ja.wordpress.org/"
+
+#: comments.php:56
+msgid "Comments are closed."
+msgstr "コメントは受け付けていません。"
+
+#: comments.php:29
+msgctxt "comments title"
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] "「%2$s」への%1$s件のフィードバック"
+
+#. translators: %1$s: smiley
+#: 404.php:44
+msgid "Try looking in the monthly archives. %1$s"
+msgstr "月別アーカイブを見てみてください。%1$s"
+
+#: 404.php:27
+msgid "Most Used Categories"
+msgstr "よく使われているカテゴリー"
+
+#: 404.php:19
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr "ここには何も見つかりませんでした。以下のリンクまたは検索をお試しください。"
+
+#: 404.php:15
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "お探しのページが見つかりません。"

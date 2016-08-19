@@ -1,0 +1,295 @@
+# Translation of Independent-publisher in Turkish
+# This file is distributed under the same license as the Independent-publisher package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2015-06-25 03:59:14+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: GlotPress/1.0-alpha-1100\n"
+"Project-Id-Version: Independent-publisher\n"
+
+#: inc/template-tags.php:132 inc/template-tags.php:262
+msgid "Featured"
+msgstr "Öne Çıkan"
+
+#: template-parts/header-cover-image.php:11
+msgid "Home"
+msgstr "Ana Sayfa"
+
+#: template-parts/content-single.php:69
+msgid "Published"
+msgstr "Yayınlanmış"
+
+#: template-parts/content-single.php:47
+msgid "Tagged"
+msgstr "Etiketler"
+
+#: template-parts/content-none.php:29
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "Aradığınız sayfa bulunamadı. Belki arama kutusu aradığınızı bulma konusunda yardımcı olabilir."
+
+#: template-parts/content-none.php:24
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "Üzgünüz fakat aradığınız kriterler ile örtüşen sonuç bulunamadı. Lütfen başka kriterler ile tekrar deneyin."
+
+#: template-parts/content-none.php:20
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "İlk yazınızı yayınlamaya hazır mısınız? <a href=\"%1$s\">Buradan başlayın</a>."
+
+#: template-parts/content-none.php:14
+msgid "Nothing Found"
+msgstr "Hiçbir şey bulunmadı"
+
+#: search.php:16
+msgid "Search Results for: %s"
+msgstr "Arama sonuçları: %s"
+
+#: inc/template-tags.php:346
+msgid "Archives"
+msgstr "Arşivler"
+
+#. translators: 1: Taxonomy singular name, 2: Current taxonomy term
+#: inc/template-tags.php:344
+msgid "%1$s: %2$s"
+msgstr "%1$s: %2$s"
+
+#: inc/template-tags.php:340
+msgid "Archives: %s"
+msgstr "Arşivler: %s"
+
+#: inc/template-tags.php:337
+msgctxt "post format archive title"
+msgid "Chats"
+msgstr "Sohbetler"
+
+#: inc/template-tags.php:335
+msgctxt "post format archive title"
+msgid "Audio"
+msgstr "Ses"
+
+#: inc/template-tags.php:333
+msgctxt "post format archive title"
+msgid "Statuses"
+msgstr "Durumlar"
+
+#: inc/template-tags.php:331
+msgctxt "post format archive title"
+msgid "Links"
+msgstr "Bağlantılar"
+
+#: inc/template-tags.php:329
+msgctxt "post format archive title"
+msgid "Quotes"
+msgstr "Alıntılar"
+
+#: inc/template-tags.php:327
+msgctxt "post format archive title"
+msgid "Videos"
+msgstr "Videolar"
+
+#: inc/template-tags.php:325
+msgctxt "post format archive title"
+msgid "Images"
+msgstr "Görseller"
+
+#: inc/template-tags.php:323
+msgctxt "post format archive title"
+msgid "Galleries"
+msgstr "Galeriler"
+
+#: inc/template-tags.php:321
+msgctxt "post format archive title"
+msgid "Asides"
+msgstr "Yan sütun"
+
+#: inc/template-tags.php:318
+msgctxt "daily archives date format"
+msgid "F j, Y"
+msgstr "j F Y"
+
+#: inc/template-tags.php:318
+msgid "Day: %s"
+msgstr "Gün: %s"
+
+#: inc/template-tags.php:316
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr "F Y"
+
+#: inc/template-tags.php:316
+msgid "Month: %s"
+msgstr "Ay: %s"
+
+#: inc/template-tags.php:314
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr "Y"
+
+#: inc/template-tags.php:314
+msgid "Year: %s"
+msgstr "Yıl: %s"
+
+#: inc/template-tags.php:312
+msgid "Author: %s"
+msgstr "Yazar: %s"
+
+#: inc/template-tags.php:310
+msgid "Tag: %s"
+msgstr "Etiket: %s"
+
+#: inc/template-tags.php:308
+msgid "Category: %s"
+msgstr "Kategori: %s"
+
+#: inc/template-tags.php:238
+msgid "% Comments"
+msgstr "% Yorum"
+
+#: inc/template-tags.php:238
+msgid "1 Comment"
+msgstr "1 yorum"
+
+#: inc/template-tags.php:238
+msgid "Leave a comment"
+msgstr "Yorum bırakın"
+
+#: inc/template-tags.php:209
+msgid "Tagged %1$s"
+msgstr "%1$s etiketlendi"
+
+#: inc/template-tags.php:202
+msgid "in %1$s"
+msgstr "de %1$s"
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:200 inc/template-tags.php:207
+msgid ", "
+msgstr ", "
+
+#. translators: %s: the category list
+#: inc/template-tags.php:162
+msgid "in %s"
+msgstr "%s içinde"
+
+#: inc/template-tags.php:85
+msgid "Post navigation"
+msgstr "Yazı dolaşımı"
+
+#: inc/template-tags.php:60
+msgid "Newer posts"
+msgstr "Yeni Yazılar"
+
+#: inc/template-tags.php:56
+msgid "Older posts"
+msgstr "Eski Yazılar"
+
+#: inc/template-tags.php:52
+msgid "Posts navigation"
+msgstr "Yazı dolaşımı"
+
+#: inc/template-tags.php:22
+msgid "Newer Comments"
+msgstr "Yeni yorumlar"
+
+#: inc/template-tags.php:21
+msgid "Older Comments"
+msgstr "Eski yorumlar"
+
+#: inc/template-tags.php:18
+msgid "Comment navigation"
+msgstr "Yorum dolaşımı"
+
+#: inc/extras.php:82
+msgid "Page %s"
+msgstr "Sayfa %s"
+
+#: inc/customizer.php:19
+msgid "Theme Options"
+msgstr "Tema Seçenekleri"
+
+#: image.php:68
+msgid "Next Image"
+msgstr "Sonraki Resim"
+
+#: image.php:67
+msgid "Previous Image"
+msgstr "Önceki görsel"
+
+#: image.php:53 template-parts/content-page.php:22
+#: template-parts/content-single.php:41 template-parts/content.php:34
+msgid "Pages:"
+msgstr "Sayfalar:"
+
+#: image.php:59 inc/template-tags.php:243 template-parts/content-page.php:28
+#: template-parts/content-single.php:48
+msgid "Edit"
+msgstr "Düzenle"
+
+#: footer.php:25 footer.php:27 header.php:57
+#: template-parts/header-cover-image.php:15
+#: template-parts/header-cover-image.php:34
+msgid "Menu"
+msgstr "Menü"
+
+#: header.php:24
+msgid "Skip to content"
+msgstr "İçeriğe geç"
+
+#: functions.php:167
+msgid "Sidebar"
+msgstr "Yan Menü"
+
+#: functions.php:123
+msgctxt "PT Serif font: on or off"
+msgid "on"
+msgstr "on"
+
+#: functions.php:48
+msgid "Social Menu"
+msgstr "Sosyal Menü"
+
+#: functions.php:47
+msgid "Primary Menu"
+msgstr "Birincil menü"
+
+#: footer.php:18
+msgid "Theme: %1$s by %2$s."
+msgstr "Tema: %2$s tarafından %1$s."
+
+#: footer.php:16
+msgid "Proudly powered by %s"
+msgstr "%s gururla sunar"
+
+#: footer.php:16
+msgid "http://wordpress.org/"
+msgstr "http://wordpress.org/"
+
+#: comments.php:56
+msgid "Comments are closed."
+msgstr "Yorumlar kapalı."
+
+#: comments.php:29
+msgctxt "comments title"
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] "&ldquo;%2$s&rdquo; üzerine bir yorum"
+msgstr[1] "&ldquo;%2$s&rdquo; üzerine %1$s yorum"
+
+#. translators: %1$s: smiley
+#: 404.php:44
+msgid "Try looking in the monthly archives. %1$s"
+msgstr "Aylık arşivlere bakmayı deneyin. %1$s"
+
+#: 404.php:27
+msgid "Most Used Categories"
+msgstr "En çok Kullanılan Kategoriler"
+
+#: 404.php:19
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr "Burada hiçbir şeyin bulunmadığı görülüyor. Belki alttaki bağlantılardan birini veya bir arama yapmayı denemelisin?"
+
+#: 404.php:15
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "Üzgünüz! Bu sayfa bulunamıyor."
